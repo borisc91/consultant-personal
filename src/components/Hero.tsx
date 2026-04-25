@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { ArrowRight } from "lucide-react";
@@ -11,6 +11,7 @@ type HeroProps = {
   intro: string;
   primaryCta: string;
   secondaryCta: string;
+  locale?: "en" | "rs" | "ru";
   videoSrc?: string;
   videoWebmSrc?: string;
   videoPosterSrc?: string;
@@ -28,6 +29,7 @@ export function Hero({
   intro,
   primaryCta,
   secondaryCta,
+  locale = "en",
   videoSrc,
   videoWebmSrc,
   videoPosterSrc,
@@ -38,7 +40,33 @@ export function Hero({
   const mediaRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const hasPlayedVideoRef = useRef(false);
+  const mediaIntroCompleteRef = useRef(false);
+  const videoFullyVisibleRef = useRef(false);
+  const videoLoadedRef = useRef(false);
+  const playTimeoutRef = useRef<number | undefined>(undefined);
   const blobsRef = useRef<HTMLDivElement[]>([]);
+  const [isIntroExpanded, setIsIntroExpanded] = useState(false);
+
+  const scheduleVideoPlayback = useCallback(() => {
+    const video = videoRef.current;
+
+    if (
+      !video ||
+      hasPlayedVideoRef.current ||
+      !mediaIntroCompleteRef.current ||
+      !videoFullyVisibleRef.current ||
+      !videoLoadedRef.current
+    ) {
+      return;
+    }
+
+    hasPlayedVideoRef.current = true;
+    playTimeoutRef.current = window.setTimeout(() => {
+      void video.play().catch(() => {
+        hasPlayedVideoRef.current = false;
+      });
+    }, 500);
+  }, []);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -48,6 +76,8 @@ export function Hero({
         y: 0,
         opacity: 1,
       });
+      mediaIntroCompleteRef.current = true;
+      scheduleVideoPlayback();
       return;
     }
 
@@ -74,6 +104,10 @@ export function Hero({
       y: 0,
       opacity: 1,
       duration: 1,
+      onComplete: () => {
+        mediaIntroCompleteRef.current = true;
+        scheduleVideoPlayback();
+      },
     }, "-=0.8");
 
     // Animate background blobs
@@ -90,7 +124,7 @@ export function Hero({
         delay: i * 0.5
       });
     });
-  }, []);
+  }, [scheduleVideoPlayback]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -106,28 +140,42 @@ export function Hero({
       return;
     }
 
+    hasPlayedVideoRef.current = false;
+    videoFullyVisibleRef.current = false;
+    videoLoadedRef.current = video.readyState >= HTMLMediaElement.HAVE_ENOUGH_DATA;
     video.pause();
     video.currentTime = 0;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry.isIntersecting || hasPlayedVideoRef.current) {
-          return;
-        }
-
-        hasPlayedVideoRef.current = true;
-        void video.play().catch(() => {
-          hasPlayedVideoRef.current = false;
-        });
-        observer.disconnect();
+        videoFullyVisibleRef.current = entry.isIntersecting && entry.intersectionRatio >= 0.98;
+        scheduleVideoPlayback();
       },
-      { threshold: 0.45 }
+      { threshold: [0, 0.5, 0.98, 1] }
     );
 
-    observer.observe(video);
+    const handleVideoLoaded = () => {
+      videoLoadedRef.current = true;
+      scheduleVideoPlayback();
+    };
 
-    return () => observer.disconnect();
-  }, [videoSrc]);
+    video.addEventListener("canplaythrough", handleVideoLoaded, { once: true });
+    observer.observe(video);
+    video.load();
+
+    if (videoLoadedRef.current) {
+      scheduleVideoPlayback();
+    }
+
+    return () => {
+      observer.disconnect();
+      video.removeEventListener("canplaythrough", handleVideoLoaded);
+      if (playTimeoutRef.current) {
+        window.clearTimeout(playTimeoutRef.current);
+        playTimeoutRef.current = undefined;
+      }
+    };
+  }, [scheduleVideoPlayback, videoSrc]);
 
   const addToRefs = (el: HTMLSpanElement | null) => {
     if (el && !headingRefs.current.includes(el)) {
@@ -141,10 +189,16 @@ export function Hero({
     }
   };
 
+  const readMoreLabels = {
+    en: { more: "Read more", less: "Show less" },
+    rs: { more: "Pročitaj više", less: "Prikaži manje" },
+    ru: { more: "Читать дальше", less: "Скрыть" },
+  };
+
   return (
     <section 
       ref={containerRef}
-      className="relative pt-32 pb-20 md:pt-36 md:pb-24 lg:pt-40 lg:pb-24 px-6 overflow-hidden min-h-[80vh] md:min-h-[68vh] lg:min-h-[72vh] flex items-center"
+      className="relative flex min-h-0 items-start overflow-hidden px-6 pb-6 pt-24 md:min-h-[68vh] md:items-center md:pb-24 md:pt-36 lg:min-h-[72vh] lg:pb-24 lg:pt-40"
     >
       {/* Animated Light Blue Gradient Background */}
       <div className="absolute inset-0 -z-10 w-full h-full bg-white overflow-hidden">
@@ -165,38 +219,37 @@ export function Hero({
       </div>
 
       <div className="max-w-7xl mx-auto w-full relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 2xl:gap-28 items-center">
+        <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-2 md:gap-10 lg:gap-20 2xl:gap-28">
           {/* Left Side: Text */}
-          <div className="flex flex-col space-y-8">
-            <h1 className="font-display text-5xl md:text-6xl lg:text-[4rem] 2xl:text-7xl leading-[1.1] tracking-tight text-slate-900 flex flex-col">
+          <div className="flex flex-col space-y-5 md:space-y-8">
+            <h1 className="font-display text-[2.6rem] leading-[1.04] tracking-tight text-slate-900 flex flex-col md:text-6xl md:leading-[1.1] lg:text-[4rem] 2xl:text-7xl">
               <span ref={addToRefs} className="block w-full whitespace-nowrap">{headingLineOne}</span>
-              <span ref={addToRefs} className="block w-full whitespace-nowrap text-slate-500">{headingLineTwo}</span>
+              <span ref={addToRefs} className="block w-full max-w-full text-balance text-slate-500">{headingLineTwo}</span>
             </h1>
-            <p className="max-w-xl text-base md:text-lg leading-relaxed text-slate-600">
-              {intro}
-            </p>
-            
-            <div ref={ctaRef} className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-4">
-              <Link 
-                href="#case-studies"
-                className="group relative inline-flex items-center justify-center gap-2 bg-slate-900 text-white px-8 py-4 rounded-xl text-sm font-medium transition-transform hover:scale-[1.02] active:scale-[0.98]"
+            <div className="max-w-xl text-base leading-relaxed text-slate-600 md:text-lg">
+              <p
+                className={
+                  isIntroExpanded
+                    ? ""
+                    : "overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] md:block md:overflow-visible md:[display:block]"
+                }
               >
-                {primaryCta}
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link 
-                href="#contact"
-                className="inline-flex items-center justify-center px-8 py-4 rounded-xl text-sm font-medium text-slate-900 border border-slate-200 bg-white/80 backdrop-blur-sm hover:bg-white transition-colors"
+                {intro}
+              </p>
+              <button
+                type="button"
+                className="mt-2 inline-flex text-sm font-medium text-accent transition-colors hover:text-slate-900 md:hidden"
+                onClick={() => setIsIntroExpanded((current) => !current)}
               >
-                {secondaryCta}
-              </Link>
+                {isIntroExpanded ? readMoreLabels[locale].less : readMoreLabels[locale].more}
+              </button>
             </div>
           </div>
 
           {/* Right Side: Media Placement */}
           <div 
             ref={mediaRef} 
-            className="relative aspect-[4/5] md:aspect-video md:w-[74%] lg:w-[72%] 2xl:w-auto md:justify-self-end lg:justify-self-start 2xl:justify-self-auto md:translate-x-6 lg:-translate-x-2 2xl:translate-x-12 flex items-center justify-center overflow-visible scale-[1.2] md:scale-[1.08] lg:scale-[1.05] 2xl:scale-[1.72] origin-center"
+            className="relative order-3 -mt-1 flex h-[276px] w-full origin-center scale-[1.18] items-center justify-center overflow-visible sm:h-[318px] md:order-2 md:mt-0 md:aspect-video md:h-auto md:w-[74%] md:translate-x-6 md:scale-[1.08] md:justify-self-end lg:w-[72%] lg:-translate-x-2 lg:scale-[1.05] lg:justify-self-start 2xl:w-auto 2xl:translate-x-12 2xl:scale-[1.72] 2xl:justify-self-auto"
           >
             <div className="absolute inset-[-8%] bg-[radial-gradient(ellipse_at_64%_50%,rgba(224,242,254,0.52),rgba(248,250,252,0.26)_38%,transparent_66%)] pointer-events-none" />
             <div className="absolute inset-[-8%] opacity-45 bg-[linear-gradient(to_right,rgba(15,23,42,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.08)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_at_center,black_0%,transparent_72%)] pointer-events-none" />
@@ -209,16 +262,16 @@ export function Hero({
                   className="absolute inset-0 h-full w-full object-contain object-center mix-blend-multiply opacity-95 [filter:contrast(1.03)_saturate(0.88)] [mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.55)_16%,black_30%,black_100%)]"
                   muted
                   playsInline
-                  preload="none"
+                  preload="auto"
                   poster={videoPosterSrc}
                   disablePictureInPicture
                   controlsList="nodownload noplaybackrate noremoteplayback"
                   aria-label="Boris demonstrating traffic growth on a chart"
                 >
+                  <source src={videoSrc} type="video/mp4" />
                   {videoWebmSrc ? (
                     <source src={videoWebmSrc} type="video/webm" />
                   ) : null}
-                  <source src={videoSrc} type="video/mp4" />
                   [ video: me dragging a chart upward ]
                 </video>
                 <div className="absolute inset-[-4%] bg-[radial-gradient(ellipse_at_78%_56%,transparent_36%,rgba(255,255,255,0.24)_80%,rgba(255,255,255,0.62)_100%)] [mask-image:linear-gradient(to_right,transparent_0%,transparent_42%,black_70%)] pointer-events-none" />
@@ -234,6 +287,22 @@ export function Hero({
                 </p>
               </div>
             )}
+          </div>
+
+          <div ref={ctaRef} className="order-2 flex flex-col items-start gap-3 pt-1 sm:flex-row sm:items-center md:order-3 md:-mt-6 md:gap-4 md:pt-0">
+            <Link 
+              href="#case-studies"
+              className="group relative inline-flex items-center justify-center gap-2 bg-slate-900 text-white px-7 py-3.5 rounded-xl text-sm font-medium transition-transform hover:scale-[1.02] active:scale-[0.98] md:px-8 md:py-4"
+            >
+              {primaryCta}
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link 
+              href="#contact"
+              className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white/80 px-7 py-3.5 text-sm font-medium text-slate-900 backdrop-blur-sm transition-colors hover:bg-white md:px-8 md:py-4"
+            >
+              {secondaryCta}
+            </Link>
           </div>
         </div>
       </div>

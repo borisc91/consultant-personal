@@ -213,8 +213,13 @@ export function getHomeContent(locale: Locale): HomeContent {
     capabilities: extractCapabilities(capabilitiesSection?.body ?? ""),
     tools: extractBullets(toolsSection?.body ?? ""),
     toolsHeading: cleanInline(toolsSection?.title ?? "Tools I Use Daily"),
-    caseStudiesHeading: "Case studies.",
-    caseStudiesSubtext: "Real clients. Real numbers. Real strategy.",
+    caseStudiesHeading:
+      locale === "rs"
+        ? "Studije slučaja."
+        : locale === "ru"
+          ? "Кейсы."
+          : "Case studies.",
+    caseStudiesSubtext: "Real numbers. Real strategy.",
     caseStudiesCta: "View all case studies",
     contactHeading: cleanInline(contactSection?.title ?? "Contact"),
     contactCopy:

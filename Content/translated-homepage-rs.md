@@ -1,8 +1,8 @@
-# Zdravo, ja sam Boris. Konsultant.
+# Zdravo. Hajde da popravimo tvoj SEO.
 
-Ne radim kvartalne audite, šuplje kalendare sadržaja niti "hajde da preispitamo sledeći kvartal" strategije. Umesto toga, popravljam rendering bag koji blokira tvoje kategorije. Takođe, gradim tvoj E-E-A-T tako da ti sledeći Google core update zapravo pomogne. Pored toga, čistim 900 postova koji vuku tvoj sajt nadole. Baziran u Novom Sadu, Srbija, radim sa ecommerce, iGaming, crypto i B2B SaaS osnivačima širom UK, EU i US.
+Ne radim kvartalne audite, šuplje kalendare sadržaja niti "hajde da preispitamo sledeći kvartal" strategije. Popravljam rendering bag koji blokira tvoje kategorije. Gradim tvoj E-E-A-T tako da ti sledeći Google core update zapravo pomogne. Čistim 900 postova koji vuku tvoj sajt nadole. Živim i radim u Novom Sadu, u Srbiji.
 
-**[Pogledaj studije slučaja →]**  **[Ili zakači 30-min audit]**
+**[Pogledaj studije slučaja →]**  **[Kontaktiraj me]**
 
 ---
 
@@ -19,7 +19,7 @@ Ne radim kvartalne audite, šuplje kalendare sadržaja niti "hajde da preispitam
 
 ## Šta radim
 
-Četiri usluge. Bez paketa. Zato se obim i cena grade oko vašeg stvarnog problema.
+Obim i cena se grade oko vašeg stvarnog problema.
 
 ### Tehnički SEO
 

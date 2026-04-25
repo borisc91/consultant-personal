@@ -25,7 +25,7 @@ export function CaseStudies({
       <div className="max-w-7xl mx-auto">
         <div className="mb-16 md:mb-24">
           <div>
-            <h2 className="font-editorial text-6xl md:text-7xl italic tracking-tight text-slate-900 mb-6">
+            <h2 className="font-editorial text-6xl md:text-7xl tracking-tight text-slate-900 mb-6">
               {heading}
             </h2>
             <p className="text-base md:text-lg text-slate-600 leading-relaxed">

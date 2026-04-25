@@ -13,24 +13,26 @@ type ServicesProps = {
 
 export function Services({ heading, subtext, services }: ServicesProps) {
   return (
-    <section id="services" className="py-24 md:py-32 px-6 bg-slate-50">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-16 md:mb-24">
-          <h2 className="font-display text-4xl md:text-5xl tracking-tight text-slate-900 mb-6">
+    <section id="services" className="bg-slate-50 px-6 py-20 md:py-24 xl:py-28 2xl:py-32">
+      <div className="mx-auto max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
+        <div className="mb-12 md:mb-14 lg:mb-16 2xl:mb-24">
+          <h2 className="mb-5 font-display text-4xl tracking-tight text-slate-900 md:text-[2.65rem] 2xl:text-5xl">
             {heading}
           </h2>
-          <p className="text-lg text-slate-600 max-w-2xl">
-            {subtext}
-          </p>
+          {subtext ? (
+            <p className="max-w-2xl text-base leading-relaxed text-slate-600 md:text-[17px] 2xl:text-lg">
+              {subtext}
+            </p>
+          ) : null}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 bg-slate-200 border border-slate-200 rounded-2xl overflow-hidden gap-[1px]">
           {services.map((service, index) => (
             <div 
               key={index}
-              className="group bg-white p-8 md:p-12 hover:bg-slate-50/80 transition-colors duration-300 flex flex-col h-full"
+              className="group flex h-full flex-col bg-white p-7 transition-colors duration-300 hover:bg-slate-50/80 md:p-8 lg:p-9 xl:p-10 2xl:p-12"
             >
-              <div className="flex justify-between items-center mb-10">
+              <div className="mb-7 flex items-center justify-between lg:mb-8 2xl:mb-10">
                 <span className="font-mono text-xs text-slate-500 tracking-wider">
                   {service.num} &mdash; {service.tagLeft}
                 </span>
@@ -39,11 +41,11 @@ export function Services({ heading, subtext, services }: ServicesProps) {
                 </span>
               </div>
               
-              <h3 className="text-2xl font-medium text-slate-900 tracking-tight mb-4 group-hover:text-blue-900 transition-colors">
+              <h3 className="mb-3 text-xl font-medium tracking-tight text-slate-900 transition-colors group-hover:text-blue-900 lg:text-[1.35rem] 2xl:mb-4 2xl:text-2xl">
                 {service.title}
               </h3>
               
-              <p className="text-[14px] text-slate-600 leading-[1.6] mb-12 flex-grow">
+              <p className="mb-9 flex-grow text-[13.5px] leading-[1.6] text-slate-600 2xl:mb-12 2xl:text-[14px]">
                 {service.desc}
               </p>
               

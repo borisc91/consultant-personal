@@ -1,6 +1,6 @@
 # Hi, I'm Boris. The SEO consultant.
 
-I don't do quarterly audits, fluff content calendars, or "let's revisit this next quarter" roadmaps. Instead, I fix the rendering bug blocking your category pages. Also, I rebuild your E-E-A-T so the next Google core update actually helps you. Furthermore, I prune the 900 posts dragging your site down. Based in Novi Sad, Serbia, I work with ecommerce, iGaming, crypto, and B2B SaaS founders across the UK, EU, and US.
+I don't do quarterly audits, fluff content calendars, or "let's revisit this next quarter" roadmaps. I fix the rendering bug blocking your category pages. I rebuild your E-E-A-T so the next Google core update actually helps you. I prune the 900 posts dragging your site down. Based in Novi Sad, Serbia.
 
 **[See the case studies →]**  **[Contact me]**
 
@@ -19,7 +19,7 @@ I don't do quarterly audits, fluff content calendars, or "let's revisit this nex
 
 ## What I Do
 
-Four services. No packages. So scope and pricing get built around your actual problem.
+Scope and pricing get built around your actual problem.
 
 ### Technical SEO
 

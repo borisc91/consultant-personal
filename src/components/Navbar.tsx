@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import gsap from "gsap";
+import { Menu, X } from "lucide-react";
 
 type NavbarProps = {
   navItems: Array<{ label: string; href: string }>;
@@ -11,6 +12,7 @@ type NavbarProps = {
 
 export function Navbar({ navItems, languageLinks }: NavbarProps) {
   const navRef = useRef<HTMLElement>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     // Elegant quick fade down for the navbar
@@ -28,7 +30,7 @@ export function Navbar({ navItems, languageLinks }: NavbarProps) {
     >
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <Link href="/" className="font-display font-medium text-2xl tracking-tight text-slate-900">
-          Boris.
+          B
         </Link>
 
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
@@ -51,6 +53,52 @@ export function Navbar({ navItems, languageLinks }: NavbarProps) {
               </Link>
             ))}
           </div>
+        </div>
+
+        <button
+          type="button"
+          className="inline-flex size-11 items-center justify-center rounded-xl border border-slate-200 bg-white/80 text-slate-900 shadow-sm transition-colors hover:bg-white md:hidden"
+          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="mobile-navigation"
+          onClick={() => setIsMobileMenuOpen((current) => !current)}
+        >
+          {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
+      </div>
+
+      <div
+        id="mobile-navigation"
+        className={
+          isMobileMenuOpen
+            ? "border-t border-slate-200 bg-white/95 px-6 py-5 shadow-lg backdrop-blur-md md:hidden"
+            : "hidden"
+        }
+      >
+        <div className="flex flex-col gap-4 text-sm font-medium text-slate-700">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="transition-colors hover:text-slate-900"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+
+        <div className="mt-5 flex gap-4 border-t border-slate-200 pt-4 text-xs font-medium tracking-wider">
+          {languageLinks.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              className={link.active ? "text-slate-900" : "text-slate-400 transition-colors hover:text-slate-900"}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
       </div>
     </nav>

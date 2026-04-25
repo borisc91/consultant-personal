@@ -76,6 +76,7 @@ export default async function Page({ params }: Props) {
             intro={homeContent.intro}
             primaryCta={homeContent.primaryCta}
             secondaryCta={homeContent.secondaryCta}
+            locale={route.locale}
             videoSrc="/video-increase-traffic.optimized.mp4"
             videoWebmSrc="/video-increase-traffic.optimized.webm"
             videoPosterSrc="/video-increase-traffic-poster.jpg"
