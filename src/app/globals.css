@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), sans-serif;
+  --font-display: var(--font-fraunces), serif;
+  --font-editorial: var(--font-instrument-serif), serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+
+  --color-brand-accent: #e0f2fe; /* light blue-100 */
+  --color-accent: #8a2639;
+}
+
+@layer base {
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@keyframes editorial-blue-sweep {
+  0% {
+    background-position: 120% 50%;
+  }
+  100% {
+    background-position: -120% 50%;
+  }
+}
+
+.animate-editorial-blue-sweep {
+  animation: editorial-blue-sweep 5s ease-in-out infinite alternate;
+}
+
+.animate-editorial-blue-sweep-reverse {
+  animation: editorial-blue-sweep 6s ease-in-out infinite alternate-reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-editorial-blue-sweep,
+  .animate-editorial-blue-sweep-reverse {
+    animation: none;
+  }
+}

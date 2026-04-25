@@ -1,0 +1,264 @@
+{
+  "_readme": "Hreflang logic: for each page, iterate paths and emit one <link rel='alternate' hreflang='[hreflangCodes[locale]]' href='[baseUrl + path]'> per locale. Also emit hreflang='x-default' pointing to paths.en.",
+
+  "config": {
+    "baseUrl": "https://REPLACE-WITH-YOUR-DOMAIN.com",
+    "defaultLocale": "en",
+    "locales": ["en", "rs", "ru"],
+    "localeHtmlLang": {
+      "en": "en",
+      "rs": "sr",
+      "ru": "ru"
+    },
+    "hreflangCodes": {
+      "en": "en",
+      "rs": "sr-RS",
+      "ru": "ru"
+    }
+  },
+
+  "pages": [
+    {
+      "id": "home",
+      "type": "home",
+      "paths": {
+        "en": "/",
+        "rs": "/rs/",
+        "ru": "/ru/"
+      },
+      "titles": {
+        "en": "SEO Consultant for Growth | Novi Sad, Serbia",
+        "rs": "SEO Konsultant za Rast | Novi Sad, Srbija",
+        "ru": "SEO-Консультант для Роста | Нови-Сад, Сербия"
+      }
+    },
+
+    {
+      "id": "case-studies-hub",
+      "type": "case-studies-index",
+      "paths": {
+        "en": "/case-studies",
+        "rs": "/rs/case-studies",
+        "ru": "/ru/case-studies"
+      },
+      "titles": {
+        "en": "SEO Case Studies | Real Results from Real Clients",
+        "rs": "SEO Studije Slučaja | Pravi Rezultati sa Pravim Klijentima",
+        "ru": "SEO Кейс-Стади | Реальные Результаты с Реальными Клиентами"
+      }
+    },
+
+    {
+      "id": "case-study-igaming",
+      "type": "case-study",
+      "order": 1,
+      "slug": "igaming-casino-uk",
+      "contentFile": {
+        "en": "case-study-1-igaming.md",
+        "rs": "case-study-1-igaming.sr.md",
+        "ru": "case-study-1-igaming.ru.md"
+      },
+      "paths": {
+        "en": "/case-studies/igaming-casino-uk",
+        "rs": "/rs/case-studies/igaming-casino-uk",
+        "ru": "/ru/case-studies/igaming-casino-uk"
+      },
+      "titles": {
+        "en": "UK iGaming Casino: 14K to 180K Monthly Clicks in 10 Months",
+        "rs": "UK iGaming Kazino: Sa 14K na 180K Mesečnih Klikova za 10 Meseci",
+        "ru": "UK iGaming Казино: С 14K до 180K Кликов в Месяц за 10 Месяцев"
+      },
+      "cardTitle": {
+        "en": "UK Online Casino",
+        "rs": "UK Online Kazino",
+        "ru": "UK Онлайн-Казино"
+      },
+      "cardSummary": {
+        "en": "+1,185% organic clicks, 1,000+ keywords on page 1, 900% ROI",
+        "rs": "+1.185% organskih klikova, 1.000+ ključnih reči na prvoj strani, 900% ROI",
+        "ru": "+1 185% органических кликов, 1 000+ ключевых слов на первой странице, 900% ROI"
+      },
+      "industry": "iGaming"
+    },
+
+    {
+      "id": "case-study-perfume",
+      "type": "case-study",
+      "order": 2,
+      "slug": "ecommerce-perfume",
+      "contentFile": {
+        "en": "case-study-3-parfem.md",
+        "rs": "case-study-3-parfem.sr.md",
+        "ru": "case-study-3-parfem.ru.md"
+      },
+      "paths": {
+        "en": "/case-studies/ecommerce-perfume",
+        "rs": "/rs/case-studies/ecommerce-perfume",
+        "ru": "/ru/case-studies/ecommerce-perfume"
+      },
+      "titles": {
+        "en": "Niche Perfume Ecommerce: 30 to 500 Monthly Leads in 4 Months",
+        "rs": "Niche Ecommerce Parfemi: Sa 30 na 500 Mesečnih Lidova za 4 Meseca",
+        "ru": "Нишевый Ecommerce Парфюмерии: С 30 до 500 Лидов в Месяц за 4 Месяца"
+      },
+      "cardTitle": {
+        "en": "Luxury Perfume Ecommerce",
+        "rs": "Luksuzni Parfemi Ecommerce",
+        "ru": "Ecommerce Люксовой Парфюмерии"
+      },
+      "cardSummary": {
+        "en": "+850% ROI, +380% monthly clicks, +50% YoY sales minimum",
+        "rs": "+850% ROI, +380% mesečnih klikova, minimum +50% YoY prodaje",
+        "ru": "+850% ROI, +380% кликов в месяц, минимум +50% продаж YoY"
+      },
+      "industry": "Ecommerce"
+    },
+
+    {
+      "id": "case-study-matcha",
+      "type": "case-study",
+      "order": 3,
+      "slug": "ecommerce-matcha",
+      "contentFile": {
+        "en": "case-study-2-matcha.md",
+        "rs": "case-study-2-matcha.sr.md",
+        "ru": "case-study-2-matcha.ru.md"
+      },
+      "paths": {
+        "en": "/case-studies/ecommerce-matcha",
+        "rs": "/rs/case-studies/ecommerce-matcha",
+        "ru": "/ru/case-studies/ecommerce-matcha"
+      },
+      "titles": {
+        "en": "New Matcha Brand: 0 to 22K Monthly Organic Visits in 12 Months",
+        "rs": "Novi Matcha Brend: Sa 0 na 22K Organskih Poseta Mesečno za 12 Meseci",
+        "ru": "Новый Бренд Матчи: С 0 до 22K Органических Посещений в Месяц за 12 Месяцев"
+      },
+      "cardTitle": {
+        "en": "Specialty Matcha Brand",
+        "rs": "Specijalizovani Matcha Brend",
+        "ru": "Специализированный Бренд Матчи"
+      },
+      "cardSummary": {
+        "en": "Brand-new domain, 0 to 22K organic, profitable by month 7",
+        "rs": "Potpuno novi domen, 0 do 22K organski, profitabilan do 7. meseca",
+        "ru": "Совершенно новый домен, 0 до 22K органики, прибыль к 7-му месяцу"
+      },
+      "industry": "Ecommerce"
+    },
+
+    {
+      "id": "case-study-crypto-exchange",
+      "type": "case-study",
+      "order": 4,
+      "slug": "crypto-trading-platform",
+      "contentFile": {
+        "en": "case-study-4-crypto-exchange.md",
+        "rs": "case-study-4-crypto-exchange.sr.md",
+        "ru": "case-study-4-crypto-exchange.ru.md"
+      },
+      "paths": {
+        "en": "/case-studies/crypto-trading-platform",
+        "rs": "/rs/case-studies/crypto-trading-platform",
+        "ru": "/ru/case-studies/crypto-trading-platform"
+      },
+      "titles": {
+        "en": "Crypto Trading Platform: +127% Organic Through a Bear Market",
+        "rs": "Crypto Trading Platforma: +127% Organike Kroz Bear Market",
+        "ru": "Crypto Trading Платформа: +127% Органики Сквозь Медвежий Рынок"
+      },
+      "cardTitle": {
+        "en": "Crypto Trading Platform",
+        "rs": "Crypto Trading Platforma",
+        "ru": "Crypto Trading Платформа"
+      },
+      "cardSummary": {
+        "en": "+127% organic, 14K monthly visits, survived 3 core updates",
+        "rs": "+127% organike, 14K mesečnih poseta, preživeli 3 core update-a",
+        "ru": "+127% органики, 14K посещений в месяц, пережили 3 core update"
+      },
+      "industry": "Crypto / YMYL"
+    },
+
+    {
+      "id": "case-study-crypto-media",
+      "type": "case-study",
+      "order": 5,
+      "slug": "crypto-media-site",
+      "contentFile": {
+        "en": "case-study-5-crypto-media.md",
+        "rs": "case-study-5-crypto-media.sr.md",
+        "ru": "case-study-5-crypto-media.ru.md"
+      },
+      "paths": {
+        "en": "/case-studies/crypto-media-site",
+        "rs": "/rs/case-studies/crypto-media-site",
+        "ru": "/ru/case-studies/crypto-media-site"
+      },
+      "titles": {
+        "en": "Crypto Media Site: HCU Recovery to 95K Monthly Organic Visits",
+        "rs": "Crypto Medijski Sajt: Oporavak od HCU do 95K Mesečnih Organskih Poseta",
+        "ru": "Crypto Медиа-Сайт: Восстановление после HCU до 95K Органических Посещений в Месяц"
+      },
+      "cardTitle": {
+        "en": "Crypto Media Platform",
+        "rs": "Crypto Medijska Platforma",
+        "ru": "Crypto Медиа-Платформа"
+      },
+      "cardSummary": {
+        "en": "+220% organic traffic, full HCU recovery, 12 topic clusters",
+        "rs": "+220% organskog saobraćaja, potpuni oporavak od HCU, 12 topik klastera",
+        "ru": "+220% органического трафика, полное восстановление после HCU, 12 тематических кластеров"
+      },
+      "industry": "Crypto / YMYL"
+    },
+
+    {
+      "id": "case-study-b2b-saas",
+      "type": "case-study",
+      "order": 6,
+      "slug": "b2b-saas",
+      "contentFile": {
+        "en": "case-study-6-saas.md",
+        "rs": "case-study-6-saas.sr.md",
+        "ru": "case-study-6-saas.ru.md"
+      },
+      "paths": {
+        "en": "/case-studies/b2b-saas",
+        "rs": "/rs/case-studies/b2b-saas",
+        "ru": "/ru/case-studies/b2b-saas"
+      },
+      "titles": {
+        "en": "B2B SaaS Platform: +140% Organic, 3x Demo Requests in 9 Months",
+        "rs": "B2B SaaS Platforma: +140% Organike, 3x Demo Zahteva za 9 Meseci",
+        "ru": "B2B SaaS Платформа: +140% Органики, 3x Заявок на Демо за 9 Месяцев"
+      },
+      "cardTitle": {
+        "en": "B2B SaaS Platform",
+        "rs": "B2B SaaS Platforma",
+        "ru": "B2B SaaS Платформа"
+      },
+      "cardSummary": {
+        "en": "+140% organic, 8K to 19K visits, +220% demo requests",
+        "rs": "+140% organike, sa 8K na 19K poseta, +220% demo zahteva",
+        "ru": "+140% органики, с 8K до 19K посещений, +220% заявок на демо"
+      },
+      "industry": "B2B SaaS"
+    },
+
+    {
+      "id": "contact",
+      "type": "contact",
+      "paths": {
+        "en": "/contact",
+        "rs": "/rs/contact",
+        "ru": "/ru/contact"
+      },
+      "titles": {
+        "en": "Contact | Book a Free 30-Minute SEO Audit Call",
+        "rs": "Kontakt | Zakažite Besplatan 30-minutni SEO Audit Poziv",
+        "ru": "Контакт | Забронировать Бесплатный 30-Минутный SEO-Аудит Звонок"
+      }
+    }
+  ]
+}
