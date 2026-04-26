@@ -1,4 +1,4 @@
-# Zdravo. Hajde da popravimo tvoj SEO.
+# Hajde da popravimo | tvoj SEO.
 
 Ne radim kvartalne audite, šuplje kalendare sadržaja niti "hajde da preispitamo sledeći kvartal" strategije. Popravljam rendering bag koji blokira tvoje kategorije. Gradim tvoj E-E-A-T tako da ti sledeći Google core update zapravo pomogne. Čistim 900 postova koji vuku tvoj sajt nadole. Živim i radim u Novom Sadu, u Srbiji.
 
@@ -19,7 +19,7 @@ Ne radim kvartalne audite, šuplje kalendare sadržaja niti "hajde da preispitam
 
 ## Šta radim
 
-Obim i cena se grade oko vašeg stvarnog problema.
+Obim i cena se grade u zavisnosti od vaših zahteva.
 
 ### Tehnički SEO
 
@@ -64,4 +64,3 @@ Bez affiliate logoa, bez napumpavanja vendora. Ako je na ovoj listi, to je deo m
 ## Kontakt
 
 [Forma sa: ime, email, URL kompanije, polje za poruku]
-[Takođe: "Ili pošaljite email direktno na boris@boristheconsultant.com"]

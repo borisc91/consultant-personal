@@ -8,7 +8,9 @@ import { Check } from "lucide-react";
 import { SiGoogleanalytics, SiN8N, SiSemrush } from "react-icons/si";
 
 type ToolsStripProps = {
+  label: string;
   heading: string;
+  subtext: string;
   tools: string[];
 };
 
@@ -290,7 +292,7 @@ function ToolLogo({ name }: { name: string }) {
   return <>{icons[name as keyof typeof icons] ?? name}</>;
 }
 
-export function ToolsStrip({ tools }: ToolsStripProps) {
+export function ToolsStrip({ label, heading, subtext, tools }: ToolsStripProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const diagramRef = useRef<HTMLDivElement>(null);
   const centerShellRef = useRef<HTMLDivElement>(null);
@@ -452,14 +454,16 @@ export function ToolsStrip({ tools }: ToolsStripProps) {
 
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="mx-auto mb-10 max-w-2xl text-center md:mb-12">
-          <p className="mb-4 font-sans text-[11px] font-medium uppercase tracking-[1.5px] text-slate-400">
-            WHAT I USE
-          </p>
+          {label ? (
+            <p className="mb-4 font-sans text-[11px] font-medium uppercase tracking-[1.5px] text-slate-400">
+              {label}
+            </p>
+          ) : null}
           <h2 className="mb-5 font-editorial text-6xl tracking-tight text-slate-900 md:text-7xl">
-            The stack.
+            {heading}
           </h2>
           <p className="text-base leading-relaxed text-slate-600 md:text-lg">
-            If it&apos;s here, it runs daily.
+            {subtext}
           </p>
         </div>
 

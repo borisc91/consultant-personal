@@ -64,6 +64,15 @@ export default async function Page({ params }: Props) {
   const homeContent = getHomeContent(route.locale);
   const languageLinks = buildLanguageLinks(route.page, route.locale);
   const navItems = buildNavItems(route.locale);
+  const footerPrimaryLinks = buildFooterPrimaryLinks(route.locale);
+  const footerCaseStudyLinks = getCaseStudyCards(route.locale).map((caseStudy) => ({
+    label: caseStudy.title,
+    href: caseStudy.href,
+  }));
+  const footerContactLink = {
+    label: getFooterContactLabel(route.locale),
+    href: findPagePath("contact", route.locale),
+  };
 
   if (route.page.type === "home") {
     return (
@@ -87,12 +96,18 @@ export default async function Page({ params }: Props) {
             subtext={homeContent.capabilitiesSubtext}
             services={homeContent.capabilities}
           />
-          <ToolsStrip heading={homeContent.toolsHeading} tools={homeContent.tools} />
+          <ToolsStrip
+            label={homeContent.toolsLabel}
+            heading={homeContent.toolsHeading}
+            subtext={homeContent.toolsSubtext}
+            tools={homeContent.tools}
+          />
           <CaseStudies
             heading={homeContent.caseStudiesHeading}
             subtext={homeContent.caseStudiesSubtext}
             viewAllLabel={homeContent.caseStudiesCta}
-            viewAllHref="/case-studies"
+            viewAllHref={findPagePath("case-studies-hub", route.locale)}
+            cardCtaLabel={homeContent.caseStudyCardCta}
             cases={getCaseStudyCards(route.locale)}
           />
         </main>
@@ -100,11 +115,16 @@ export default async function Page({ params }: Props) {
           <Contact
             heading={homeContent.contactHeading}
             copy={homeContent.contactCopy}
-            directEmailLabel={homeContent.directEmailLabel}
-            email={homeContent.email}
+            formLabels={homeContent.contactForm}
           />
         </div>
-        <Footer languageLinks={languageLinks} />
+        <Footer
+          languageLinks={languageLinks}
+          primaryLinks={footerPrimaryLinks}
+          caseStudyLinks={footerCaseStudyLinks}
+          contactLink={footerContactLink}
+          locale={route.locale}
+        />
       </>
     );
   }
@@ -118,7 +138,8 @@ export default async function Page({ params }: Props) {
             heading={homeContent.caseStudiesHeading}
             subtext={homeContent.caseStudiesSubtext}
             viewAllLabel={homeContent.caseStudiesCta}
-            viewAllHref="/case-studies"
+            viewAllHref={findPagePath("case-studies-hub", route.locale)}
+            cardCtaLabel={homeContent.caseStudyCardCta}
             cases={getCaseStudyCards(route.locale)}
           />
         </main>
@@ -126,11 +147,16 @@ export default async function Page({ params }: Props) {
           <Contact
             heading={homeContent.contactHeading}
             copy={homeContent.contactCopy}
-            directEmailLabel={homeContent.directEmailLabel}
-            email={homeContent.email}
+            formLabels={homeContent.contactForm}
           />
         </div>
-        <Footer languageLinks={languageLinks} />
+        <Footer
+          languageLinks={languageLinks}
+          primaryLinks={footerPrimaryLinks}
+          caseStudyLinks={footerCaseStudyLinks}
+          contactLink={footerContactLink}
+          locale={route.locale}
+        />
       </>
     );
   }
@@ -165,11 +191,16 @@ export default async function Page({ params }: Props) {
           <Contact
             heading={homeContent.contactHeading}
             copy={homeContent.contactCopy}
-            directEmailLabel={homeContent.directEmailLabel}
-            email={homeContent.email}
+            formLabels={homeContent.contactForm}
           />
         </div>
-        <Footer languageLinks={languageLinks} />
+        <Footer
+          languageLinks={languageLinks}
+          primaryLinks={footerPrimaryLinks}
+          caseStudyLinks={footerCaseStudyLinks}
+          contactLink={footerContactLink}
+          locale={route.locale}
+        />
       </>
     );
   }
@@ -182,11 +213,16 @@ export default async function Page({ params }: Props) {
           <Contact
             heading={homeContent.contactHeading}
             copy={homeContent.contactCopy}
-            directEmailLabel={homeContent.directEmailLabel}
-            email={homeContent.email}
+            formLabels={homeContent.contactForm}
           />
         </main>
-        <Footer languageLinks={languageLinks} />
+        <Footer
+          languageLinks={languageLinks}
+          primaryLinks={footerPrimaryLinks}
+          caseStudyLinks={footerCaseStudyLinks}
+          contactLink={footerContactLink}
+          locale={route.locale}
+        />
       </>
     );
   }
@@ -210,6 +246,50 @@ function buildNavItems(locale: Locale) {
     { label: "Capabilities", href: `${homePath === "/" ? "" : homePath}#services` },
     { label: "Contact", href: findPagePath("contact", locale) },
   ];
+}
+
+function buildFooterPrimaryLinks(locale: Locale) {
+  const homePath = findPagePath("home", locale);
+
+  const labels = {
+    en: {
+      home: "Home",
+      capabilities: "Capabilities",
+      caseStudies: "Case studies",
+      contact: "Contact me",
+    },
+    rs: {
+      home: "Početna",
+      capabilities: "Šta radim",
+      caseStudies: "Studije slučaja",
+      contact: "Kontaktiraj me",
+    },
+    ru: {
+      home: "Главная",
+      capabilities: "Что я делаю",
+      caseStudies: "Кейсы",
+      contact: "Связаться со мной",
+    },
+  }[locale];
+
+  return [
+    { label: labels.home, href: homePath },
+    { label: labels.capabilities, href: `${homePath === "/" ? "" : homePath}#services` },
+    { label: labels.caseStudies, href: findPagePath("case-studies-hub", locale) },
+    { label: labels.contact, href: findPagePath("contact", locale) },
+  ];
+}
+
+function getFooterContactLabel(locale: Locale) {
+  if (locale === "rs") {
+    return "Kontaktiraj me";
+  }
+
+  if (locale === "ru") {
+    return "Связаться со мной";
+  }
+
+  return "Contact me";
 }
 
 function findPagePath(id: string, locale: Locale) {

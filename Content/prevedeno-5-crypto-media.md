@@ -69,5 +69,3 @@ Zatim je 12 topik klastera počelo da osvaja svoje prostore. Svaki je držao poz
 Ako je vaš sajt pogođen Helpful Content Update-om, lekcija ovde je teška. Prvo, rešenje nije pisanje "korisnijih" postova pored starih. Umesto toga, rešenje je da se suočite sa onim što ste pogrešno objavili i da to uklonite.
 
 Takođe, većina sajtova pogođenih HCU-om nosi stotine postova koji povlače ostatak sajta na dole. Zato je čišćenje najbrže dostupno sredstvo za oporavak. Štaviše, uži topički fokus skoro uvek pobjeđuje širu pokrivenost u post-HCU svetu. U stvari, matematika radi u vašu korist kada se obavežete na to.
-
-**Želite ovakav oporavak za vaš sajt? Zakažite besplatni 30-minutni audit poziv.**

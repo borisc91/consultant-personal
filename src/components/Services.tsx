@@ -7,7 +7,6 @@ type ServicesProps = {
     tagRight: string;
     title: string;
     desc: string;
-    linkText: string;
   }>;
 };
 
@@ -48,11 +47,6 @@ export function Services({ heading, subtext, services }: ServicesProps) {
               <p className="mb-9 flex-grow text-[13.5px] leading-[1.6] text-slate-600 2xl:mb-12 2xl:text-[14px]">
                 {service.desc}
               </p>
-              
-              <div className="mt-auto flex items-center text-slate-500 font-mono text-xs transition-colors group-hover:text-blue-600 cursor-pointer">
-                <span className="mr-3 text-slate-400 group-hover:text-blue-600 transition-colors group-hover:translate-x-1 duration-300">&rarr;</span>
-                {service.linkText}
-              </div>
             </div>
           ))}
         </div>

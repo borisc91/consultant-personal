@@ -64,4 +64,3 @@ No affiliate logos, no vendor padding. If it's on this list, it's in my daily wo
 ## Contact
 
 [Form with: name, email, company URL, message textarea]
-[Also: "Or email directly at boris@boristheconsultant.com"]

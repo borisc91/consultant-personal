@@ -50,17 +50,31 @@ export type HomeContent = {
     tagRight: string;
     title: string;
     desc: string;
-    linkText: string;
   }>;
   tools: string[];
+  toolsLabel: string;
   toolsHeading: string;
+  toolsSubtext: string;
   caseStudiesHeading: string;
   caseStudiesSubtext: string;
   caseStudiesCta: string;
+  caseStudyCardCta: string;
   contactHeading: string;
   contactCopy: string;
-  directEmailLabel: string;
-  email: string;
+  contactForm: {
+    nameLabel: string;
+    namePlaceholder: string;
+    emailLabel: string;
+    emailPlaceholder: string;
+    urlLabel: string;
+    urlPlaceholder: string;
+    messageLabel: string;
+    messagePlaceholder: string;
+    submitLabel: string;
+    sendingLabel: string;
+    successMessage: string;
+    errorMessage: string;
+  };
 };
 
 export type CaseStudyContent = {
@@ -105,25 +119,21 @@ const capabilityMeta = [
     num: "01",
     tagLeft: "TECHNICAL",
     tagRight: "{ I code too }",
-    linkText: "see: iGaming case study",
   },
   {
     num: "02",
     tagLeft: "SEMANTIC",
     tagRight: "TF-IDF",
-    linkText: "see: Matcha case study",
   },
   {
     num: "03",
     tagLeft: "LINKS",
     tagRight: "digital PR",
-    linkText: "see: B2B SaaS case study",
   },
   {
     num: "04",
     tagLeft: "AUTOMATION",
     tagRight: "n8n + claude",
-    linkText: "new capability",
   },
 ];
 
@@ -176,7 +186,7 @@ export function getCaseStudyCards(locale: Locale) {
     industry: page.industry ?? "",
     title: page.cardTitle?.[locale] ?? page.titles[locale],
     summary: page.cardSummary?.[locale] ?? "",
-    href: page.paths.en,
+    href: page.paths[locale],
   }));
 }
 
@@ -212,23 +222,96 @@ export function getHomeContent(locale: Locale): HomeContent {
     capabilitiesSubtext,
     capabilities: extractCapabilities(capabilitiesSection?.body ?? ""),
     tools: extractBullets(toolsSection?.body ?? ""),
-    toolsHeading: cleanInline(toolsSection?.title ?? "Tools I Use Daily"),
+    toolsLabel:
+      locale === "rs"
+        ? ""
+        : locale === "ru"
+          ? ""
+          : "WHAT I USE",
+    toolsHeading:
+      locale === "rs" ? "Šta koristim." : locale === "ru" ? "Что я использую." : "The stack.",
+    toolsSubtext:
+      locale === "rs"
+        ? "Ove alate koristim svakodnevno."
+        : locale === "ru"
+          ? "Эти инструменты я использую каждый день."
+          : "If it's here, it runs daily.",
     caseStudiesHeading:
       locale === "rs"
         ? "Studije slučaja."
         : locale === "ru"
           ? "Кейсы."
           : "Case studies.",
-    caseStudiesSubtext: "Real numbers. Real strategy.",
-    caseStudiesCta: "View all case studies",
+    caseStudiesSubtext:
+      locale === "rs"
+        ? "Stvarni brojevi. Stvarna strategija."
+        : locale === "ru"
+          ? "Реальные цифры. Реальная стратегия."
+          : "Real numbers. Real strategy.",
+    caseStudiesCta:
+      locale === "rs"
+        ? "Pogledaj sve studije slučaja"
+        : locale === "ru"
+          ? "Смотреть все кейсы"
+          : "View all case studies",
+    caseStudyCardCta:
+      locale === "rs"
+        ? "Pročitaj studiju slučaja"
+        : locale === "ru"
+          ? "Читать кейс"
+          : "Read case study",
     contactHeading: cleanInline(contactSection?.title ?? "Contact"),
     contactCopy:
       locale === "en"
         ? "If your SEO feels stuck, or previous retainers delivered reports instead of results, send a short note."
-        : "If your SEO feels stuck, or previous retainers delivered reports instead of results, send a short note.",
-    directEmailLabel:
-      locale === "en" ? "Or email directly at" : "Or email directly at",
-    email: "boris@boristheconsultant.com",
+        : locale === "rs"
+          ? "Ako tvoj SEO stoji u mestu ili su prethodni retaineri donosili izveštaje umesto rezultata, pošalji kratku poruku."
+          : "Если SEO застрял или прошлые ретейнеры приносили отчёты вместо результатов, напишите короткое сообщение.",
+    contactForm:
+      locale === "rs"
+        ? {
+            nameLabel: "Ime",
+            namePlaceholder: "Ana Petrović",
+            emailLabel: "Email",
+            emailPlaceholder: "ana@kompanija.com",
+            urlLabel: "URL kompanije",
+            urlPlaceholder: "https://kompanija.com",
+            messageLabel: "Poruka",
+            messagePlaceholder: "Reci mi šta trenutno koči tvoj SEO...",
+            submitLabel: "Pošalji poruku",
+            sendingLabel: "Šalje se...",
+            successMessage: "Poruka je poslata. Javiću se uskoro.",
+            errorMessage: "Poruka nije poslata. Pokušaj ponovo.",
+          }
+        : locale === "ru"
+          ? {
+              nameLabel: "Имя",
+              namePlaceholder: "Анна Иванова",
+              emailLabel: "Email",
+              emailPlaceholder: "anna@company.com",
+              urlLabel: "URL компании",
+              urlPlaceholder: "https://company.com",
+              messageLabel: "Сообщение",
+              messagePlaceholder: "Расскажите, что сейчас мешает вашему SEO...",
+              submitLabel: "Отправить сообщение",
+              sendingLabel: "Отправка...",
+              successMessage: "Сообщение отправлено. Я скоро отвечу.",
+              errorMessage: "Сообщение не отправлено. Попробуйте ещё раз.",
+            }
+          : {
+              nameLabel: "Name",
+              namePlaceholder: "Jane Doe",
+              emailLabel: "Email",
+              emailPlaceholder: "jane@company.com",
+              urlLabel: "Company URL",
+              urlPlaceholder: "https://company.com",
+              messageLabel: "Message",
+              messagePlaceholder: "Tell me about your current SEO challenges...",
+              submitLabel: "Send Message",
+              sendingLabel: "Sending...",
+              successMessage: "Message sent. I’ll get back to you soon.",
+              errorMessage: "Message failed. Try again.",
+            },
   };
 }
 
@@ -310,6 +393,15 @@ function normalizePath(pagePath: string) {
 
 function splitHeading(heading: string): [string, string] {
   const cleanHeading = cleanInline(heading);
+  const lineBreakMarker = cleanHeading.indexOf("|");
+
+  if (lineBreakMarker !== -1) {
+    return [
+      cleanHeading.slice(0, lineBreakMarker).trim(),
+      cleanHeading.slice(lineBreakMarker + 1).trim(),
+    ];
+  }
+
   const firstPeriod = cleanHeading.indexOf(".");
 
   if (firstPeriod === -1) {

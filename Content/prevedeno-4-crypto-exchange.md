@@ -71,5 +71,3 @@ Takođe, zauzimanje featured snippet-a je naglo poraslo. Zatim je sajt povratio 
 Ako ste u kripto industriji ili bilo kojoj YMYL oblasti, lekcija je jasna. Prvo, Google više neće rangirati anoniman sadržaj o finansijskim temama. Zatim, ako ne možete da ukažete na stvarnu osobu sa stvarnim kvalifikacijama iza tvrdnje, nećete rangirati. Štaviše, ovo važi za zdravstveni, pravni i finansijski sadržaj u celosti.
 
 Takođe, sečenje nije gubitak. Umesto toga, to je alat za oporavak. Zapravo, većina YMYL sajtova nosi stotine postova koji im aktivno štete. Zato je rešenje da se duboko seče, da se osnovne stranice ponovo izgrade pod imenovanim ekspertima, a zatim da se veruje u proces.
-
-**Želite ovakve brojke za vaš sajt? Zakažite besplatan 30-minutni poziv za audit.**

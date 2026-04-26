@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Fraunces, Instrument_Serif, JetBrains_Mono } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
+import { findRoute, getSiteStructure } from "@/lib/content";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -31,16 +32,27 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Boris | SEO Consultant",
   description: "A world-class senior SEO consultant portfolio.",
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    shortcut: ["/icon.svg"],
+  },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+type Props = Readonly<{
   children: React.ReactNode;
-}>) {
+  params: Promise<{ segments?: string[] }>;
+}>;
+
+export default async function RootLayout({ children, params }: Props) {
+  const { segments } = await params;
+  const route = findRoute(segments);
+  const lang = route
+    ? getSiteStructure().config.localeHtmlLang[route.locale]
+    : getSiteStructure().config.localeHtmlLang.en;
+
   return (
     <html
-      lang="en"
+      lang={lang}
       className={`${inter.variable} ${fraunces.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body

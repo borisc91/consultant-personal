@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { Menu, X } from "lucide-react";
+import { LogoMark } from "@/components/LogoMark";
 
 type NavbarProps = {
   navItems: Array<{ label: string; href: string }>;
@@ -29,8 +30,8 @@ export function Navbar({ navItems, languageLinks }: NavbarProps) {
       className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200"
     >
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <Link href="/" className="font-display font-medium text-2xl tracking-tight text-slate-900">
-          B
+        <Link href="/" className="inline-flex items-center" aria-label="Home">
+          <LogoMark />
         </Link>
 
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">

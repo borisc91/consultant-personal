@@ -5,6 +5,7 @@ type CaseStudiesProps = {
   subtext: string;
   viewAllLabel: string;
   viewAllHref: string;
+  cardCtaLabel: string;
   cases: Array<{
     industry: string;
     title: string;
@@ -18,6 +19,7 @@ export function CaseStudies({
   subtext,
   viewAllLabel,
   viewAllHref,
+  cardCtaLabel,
   cases,
 }: CaseStudiesProps) {
   return (
@@ -58,7 +60,7 @@ export function CaseStudies({
                 href={study.href}
                 className="mt-auto inline-flex w-fit text-sm font-medium text-accent hover:text-slate-900 transition-colors"
               >
-                Read case study &rarr;
+                {cardCtaLabel} &rarr;
               </Link>
             </div>
           ))}

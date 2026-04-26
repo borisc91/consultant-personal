@@ -69,5 +69,3 @@ Moreover, the site held up through two more core updates during the engagement. 
 If your site was hit by the Helpful Content Update, the lesson here is hard. First, the fix is not writing "more helpful" posts on top of the old ones. Instead, the fix is facing what you were wrong to publish and cutting it.
 
 Also, most HCU-hit sites are carrying hundreds of posts that are pulling the rest of the site down. Therefore, pruning is the fastest recovery tool available. Furthermore, narrower topical focus almost always beats broader coverage in the post-HCU world. In fact, the math works in your favor once you commit to it.
-
-**Want recovery like this for your site? Book a free 30-minute audit call.**

@@ -69,5 +69,3 @@ Takođe, TF-IDF rad na kategorijinim stranicama se isplatio na suptilan način. 
 Ako vodite Shopify prodavnicu, lekcija je jednostavna. Prvo, većina prodavnica ostavlja pet do deset puta više organskog prihoda jer niko nikada nije dodirnuo PDP stranice. Zatim, uobičajeni proizvođački tekstovi su tihi ubica. Takođe, stranice kategorija nisu samo landing stranice. One su vaša najvažnija nekretnina za komercijalne namere.
 
 Štaviše, TF-IDF i prava SERP analiza pobjeđuju pretpostavke keyword alata svaki put. Zato, ako se oslanjate na skor volumena i težine da odaberete ključne reči, propuštate dublji signal. Google vam već govori šta da pišete. Samo morate da izmerite.
-
-**Želite ovakve brojke za svoju prodavnicu? Zakažite besplatni 30-minutni audit poziv.**

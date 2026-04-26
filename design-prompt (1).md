@@ -288,12 +288,6 @@ CTA:
 
 Send →
 
-Below:
-
-Or email directly at:
-
-`boris@boristheconsultant.com`
-
 ---
 
 ## H. FOOTER

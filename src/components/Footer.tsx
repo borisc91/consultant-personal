@@ -1,54 +1,129 @@
+import Link from "next/link";
+import { LogoMark } from "@/components/LogoMark";
+
 type FooterProps = {
   languageLinks: Array<{ label: string; href: string; active: boolean }>;
+  primaryLinks: Array<{ label: string; href: string }>;
+  caseStudyLinks: Array<{ label: string; href: string }>;
+  contactLink: { label: string; href: string };
+  locale: "en" | "rs" | "ru";
 };
 
-export function Footer({ languageLinks }: FooterProps) {
+const footerCopy = {
+  en: {
+    based: "Based in Novi Sad, Serbia.",
+    navigation: "Navigation",
+    caseStudies: "Case studies",
+    contact: "Contact",
+    rights: "All rights reserved.",
+  },
+  rs: {
+    based: "Novi Sad, Srbija.",
+    navigation: "Navigacija",
+    caseStudies: "Studije slučaja",
+    contact: "Kontakt",
+    rights: "Sva prava zadržana.",
+  },
+  ru: {
+    based: "Нови-Сад, Сербия.",
+    navigation: "Навигация",
+    caseStudies: "Кейсы",
+    contact: "Контакт",
+    rights: "Все права защищены.",
+  },
+};
+
+export function Footer({
+  languageLinks,
+  primaryLinks,
+  caseStudyLinks,
+  contactLink,
+  locale,
+}: FooterProps) {
   const currentYear = new Date().getFullYear();
-  // Using fixed date as an example or dynamically output today
-  const lastUpdated = new Date().toLocaleDateString("en-US", { 
-    month: "long", 
-    year: "numeric" 
-  });
+  const copy = footerCopy[locale];
+  const homeHref = primaryLinks[0]?.href ?? "/";
 
   return (
-    <footer className="bg-slate-900 border-t border-slate-800 text-slate-400 py-12 px-6">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 md:gap-0">
-        
-        {/* Left: Brand Mark */}
-        <div className="font-display font-medium text-2xl tracking-tight text-white">
-          Boris.
-        </div>
-        
-        {/* Center: Based in */}
-        <div className="text-sm">
-          Based in Novi Sad, Serbia.
-        </div>
-        
-        {/* Right: Lang Switcher & Social */}
-        <div className="flex items-center gap-6">
-          <div className="flex gap-3 text-xs tracking-wider">
-            {languageLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className={link.active ? "text-white cursor-pointer" : "hover:text-white cursor-pointer transition-colors"}
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-          <div className="h-4 w-[1px] bg-slate-700"></div>
-          <a href="#" className="text-sm hover:text-white transition-colors">
+    <footer className="border-t border-slate-800 bg-slate-900 px-6 py-14 text-slate-400 md:py-16">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 md:grid-cols-[1.1fr_0.8fr_1.2fr_1fr] md:gap-12">
+        <div className="space-y-5">
+          <Link href={homeHref} className="inline-flex items-center" aria-label="Home">
+            <LogoMark className="h-12 w-12" />
+          </Link>
+          <p className="max-w-xs text-sm leading-relaxed text-slate-400">
+            {copy.based}
+          </p>
+          <a
+            href="https://www.linkedin.com/in/boris-%C4%8Dolovi%C4%87-b56769182/"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex text-sm font-medium text-white transition-colors hover:text-sky-300"
+          >
             LinkedIn
           </a>
         </div>
 
+        <div>
+          <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+            {copy.navigation}
+          </h2>
+          <ul className="space-y-3 text-sm">
+            {primaryLinks.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="transition-colors hover:text-white">
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+            {copy.caseStudies}
+          </h2>
+          <ul className="space-y-3 text-sm">
+            {caseStudyLinks.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="transition-colors hover:text-white">
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+            {copy.contact}
+          </h2>
+          <div className="space-y-4 text-sm">
+            <Link
+              href={contactLink.href}
+              className="inline-flex font-medium text-white transition-colors hover:text-sky-300"
+            >
+              {contactLink.label}
+            </Link>
+          </div>
+          <div className="mt-6 flex gap-3 text-xs font-medium tracking-wider">
+            {languageLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className={link.active ? "text-white" : "transition-colors hover:text-white"}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </div>
       </div>
 
-      {/* Bottom line */}
-      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-        <p>&copy; {currentYear} Boris SEO Consultant. All rights reserved.</p>
-        <p>last updated: {lastUpdated}</p>
+      <div className="mx-auto mt-12 max-w-7xl border-t border-slate-800 pt-8 text-xs text-slate-500">
+        <p>
+          &copy; {currentYear} Boris SEO Consultant. {copy.rights}
+        </p>
       </div>
     </footer>
   );
