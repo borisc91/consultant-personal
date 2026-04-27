@@ -85,6 +85,13 @@ export type CaseStudyContent = {
   bodyMarkdown: string;
 };
 
+export type CaseStudyFeatureImage = {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+};
+
 const contentRoot = path.join(process.cwd(), "Content");
 const structurePath = path.join(contentRoot, "site-structure (1).json");
 
@@ -244,9 +251,9 @@ export function getHomeContent(locale: Locale): HomeContent {
           : "Case studies.",
     caseStudiesSubtext:
       locale === "rs"
-        ? "Stvarni brojevi. Stvarna strategija."
+        ? ""
         : locale === "ru"
-          ? "Реальные цифры. Реальная стратегия."
+          ? ""
           : "Real numbers. Real strategy.",
     caseStudiesCta:
       locale === "rs"
@@ -339,6 +346,30 @@ export function getCaseStudyContent(
     title: cleanInline(title),
     dek: cleanInline(dek),
     bodyMarkdown,
+  };
+}
+
+export function getCaseStudyFeatureImage(
+  page: SitePage,
+  title: string
+): CaseStudyFeatureImage | null {
+  const imagesByOrder: Record<number, Omit<CaseStudyFeatureImage, "alt">> = {
+    1: { src: "/Case study 1.png", width: 1457, height: 473 },
+    2: { src: "/Case study 3.png", width: 1744, height: 399 },
+    3: { src: "/Case study 2.png", width: 2171, height: 724 },
+    4: { src: "/Case study 4.png", width: 2187, height: 719 },
+    5: { src: "/Case Study 5.png", width: 1774, height: 887 },
+    6: { src: "/Case study 6.png", width: 2176, height: 723 },
+  };
+  const image = page.order ? imagesByOrder[page.order] : null;
+
+  if (!image) {
+    return null;
+  }
+
+  return {
+    ...image,
+    alt: `${title} feature image`,
   };
 }
 

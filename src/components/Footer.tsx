@@ -2,7 +2,7 @@ import Link from "next/link";
 import { LogoMark } from "@/components/LogoMark";
 
 type FooterProps = {
-  languageLinks: Array<{ label: string; href: string; active: boolean }>;
+  languageLinks: Array<{ label: string; href: string; hrefLang: string; active: boolean }>;
   primaryLinks: Array<{ label: string; href: string }>;
   caseStudyLinks: Array<{ label: string; href: string }>;
   contactLink: { label: string; href: string };
@@ -58,14 +58,15 @@ export function Footer({
             href="https://www.linkedin.com/in/boris-%C4%8Dolovi%C4%87-b56769182/"
             target="_blank"
             rel="noreferrer"
+            aria-label="LinkedIn profile, opens in a new tab"
             className="inline-flex text-sm font-medium text-white transition-colors hover:text-sky-300"
           >
             LinkedIn
           </a>
         </div>
 
-        <div>
-          <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+        <nav aria-labelledby="footer-navigation-heading">
+          <h2 id="footer-navigation-heading" className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
             {copy.navigation}
           </h2>
           <ul className="space-y-3 text-sm">
@@ -77,10 +78,10 @@ export function Footer({
               </li>
             ))}
           </ul>
-        </div>
+        </nav>
 
-        <div>
-          <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+        <nav aria-labelledby="footer-case-studies-heading">
+          <h2 id="footer-case-studies-heading" className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
             {copy.caseStudies}
           </h2>
           <ul className="space-y-3 text-sm">
@@ -92,7 +93,7 @@ export function Footer({
               </li>
             ))}
           </ul>
-        </div>
+        </nav>
 
         <div>
           <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
@@ -106,11 +107,13 @@ export function Footer({
               {contactLink.label}
             </Link>
           </div>
-          <div className="mt-6 flex gap-3 text-xs font-medium tracking-wider">
+          <div className="mt-6 flex gap-3 text-xs font-medium tracking-wider" role="group" aria-label="Footer language switcher">
             {languageLinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
+                hrefLang={link.hrefLang}
+                aria-current={link.active ? "true" : undefined}
                 className={link.active ? "text-white" : "transition-colors hover:text-white"}
               >
                 {link.label}

@@ -12,10 +12,10 @@ type ServicesProps = {
 
 export function Services({ heading, subtext, services }: ServicesProps) {
   return (
-    <section id="services" className="bg-slate-50 px-6 py-20 md:py-24 xl:py-28 2xl:py-32">
+    <section id="services" aria-labelledby="services-heading" className="bg-slate-50 px-6 py-20 md:py-24 xl:py-28 2xl:py-32">
       <div className="mx-auto max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
         <div className="mb-12 md:mb-14 lg:mb-16 2xl:mb-24">
-          <h2 className="mb-5 font-display text-4xl tracking-tight text-slate-900 md:text-[2.65rem] 2xl:text-5xl">
+          <h2 id="services-heading" className="mb-5 font-display text-4xl tracking-tight text-slate-900 md:text-[2.65rem] 2xl:text-5xl">
             {heading}
           </h2>
           {subtext ? (
@@ -25,10 +25,11 @@ export function Services({ heading, subtext, services }: ServicesProps) {
           ) : null}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 bg-slate-200 border border-slate-200 rounded-2xl overflow-hidden gap-[1px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 bg-slate-200 border border-slate-200 rounded-2xl overflow-hidden gap-[1px]" role="list">
           {services.map((service, index) => (
             <div 
               key={index}
+              role="listitem"
               className="group flex h-full flex-col bg-white p-7 transition-colors duration-300 hover:bg-slate-50/80 md:p-8 lg:p-9 xl:p-10 2xl:p-12"
             >
               <div className="mb-7 flex items-center justify-between lg:mb-8 2xl:mb-10">

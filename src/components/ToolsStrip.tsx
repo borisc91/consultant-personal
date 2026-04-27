@@ -2,12 +2,10 @@
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Image from "next/image";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Check } from "lucide-react";
 import { SiGoogleanalytics, SiN8N, SiSemrush } from "react-icons/si";
 
-type ToolsStripProps = {
+export type ToolsStripProps = {
   label: string;
   heading: string;
   subtext: string;
@@ -342,8 +340,6 @@ export function ToolsStrip({ label, heading, subtext, tools }: ToolsStripProps) 
   }, []);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
     const section = sectionRef.current;
     const centerShell = centerShellRef.current;
     const lines = lineRefs.current;
@@ -356,11 +352,15 @@ export function ToolsStrip({ label, heading, subtext, tools }: ToolsStripProps) 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (prefersReducedMotion) {
-      gsap.set([centerShell, lines, nodes], {
-        clearProps: "all",
-        opacity: 1,
-        scale: 1,
-        strokeDashoffset: 0,
+      centerShell.style.opacity = "1";
+      centerShell.style.transform = "";
+      lines.forEach((line) => {
+        line.style.strokeDasharray = "";
+        line.style.strokeDashoffset = "0";
+      });
+      nodes.forEach((node) => {
+        node.style.opacity = "1";
+        node.style.transform = "";
       });
       return;
     }
@@ -371,10 +371,35 @@ export function ToolsStrip({ label, heading, subtext, tools }: ToolsStripProps) 
       line.style.strokeDashoffset = `${length}`;
     });
 
-    gsap.set(centerShell, { opacity: 0, scale: 0.85, transformOrigin: "50% 50%" });
-    gsap.set(nodes, { opacity: 0, scale: 0.7, transformOrigin: "50% 50%" });
+    centerShell.style.opacity = "0";
+    centerShell.style.transform = "scale(0.85)";
+    centerShell.style.transformOrigin = "50% 50%";
+    nodes.forEach((node) => {
+      node.style.opacity = "0";
+      node.style.transform = "scale(0.7)";
+      node.style.transformOrigin = "50% 50%";
+    });
 
-    const ctx = gsap.context(() => {
+    let cancelled = false;
+    let cleanupAnimation: (() => void) | undefined;
+    let observer: IntersectionObserver | undefined;
+
+    const loadAnimation = async () => {
+      const [gsapModule, scrollTriggerModule] = await Promise.all([
+        import("gsap"),
+        import("gsap/ScrollTrigger"),
+      ]);
+
+      if (cancelled) {
+        return;
+      }
+
+      const gsap = gsapModule.gsap;
+      const ScrollTrigger = scrollTriggerModule.ScrollTrigger;
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         defaults: { ease: "power2.out" },
         scrollTrigger: {
@@ -397,9 +422,33 @@ export function ToolsStrip({ label, heading, subtext, tools }: ToolsStripProps) 
           },
           "-=0.42"
         );
-    }, section);
+      }, section);
 
-    return () => ctx.revert();
+      cleanupAnimation = () => ctx.revert();
+    };
+
+    if (typeof IntersectionObserver === "undefined") {
+      void loadAnimation();
+    } else {
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          observer?.disconnect();
+          void loadAnimation();
+        },
+        { rootMargin: "400px 0px" }
+      );
+      observer.observe(section);
+    }
+
+    return () => {
+      cancelled = true;
+      observer?.disconnect();
+      cleanupAnimation?.();
+    };
   }, [displayedTools.length, diagramSize.width, diagramSize.height]);
 
   useEffect(() => {
@@ -442,6 +491,8 @@ export function ToolsStrip({ label, heading, subtext, tools }: ToolsStripProps) 
   return (
     <section
       ref={sectionRef}
+      aria-labelledby="tools-heading"
+      aria-describedby="tools-description"
       className="relative overflow-hidden border-y border-slate-200 bg-white px-6 py-24 md:py-28"
     >
       <div
@@ -459,10 +510,10 @@ export function ToolsStrip({ label, heading, subtext, tools }: ToolsStripProps) 
               {label}
             </p>
           ) : null}
-          <h2 className="mb-5 font-editorial text-6xl tracking-tight text-slate-900 md:text-7xl">
+          <h2 id="tools-heading" className="mb-5 font-editorial text-6xl tracking-tight text-slate-900 md:text-7xl">
             {heading}
           </h2>
-          <p className="text-base leading-relaxed text-slate-600 md:text-lg">
+          <p id="tools-description" className="text-base leading-relaxed text-slate-600 md:text-lg">
             {subtext}
           </p>
         </div>
@@ -475,6 +526,7 @@ export function ToolsStrip({ label, heading, subtext, tools }: ToolsStripProps) 
 
         <div
           ref={diagramRef}
+          aria-hidden="true"
           className="relative mx-auto hidden h-[400px] max-w-3xl md:block lg:h-[500px] lg:max-w-4xl xl:h-[640px] xl:max-w-6xl 2xl:h-[720px] 2xl:max-w-7xl"
         >
           <RadarWaves />
@@ -560,19 +612,15 @@ export function ToolsStrip({ label, heading, subtext, tools }: ToolsStripProps) 
                       } as CSSProperties
                     }
                   >
-                    <button
-                      type="button"
-                      aria-label={tool.name}
+                    <div
                       className={`flex size-14 items-center justify-center rounded-full border border-border-tertiary bg-white text-slate-900 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_8px_rgba(0,0,0,0.04)] transition-all duration-300 hover:scale-[1.08] hover:shadow-[0_3px_8px_rgba(15,23,42,0.08),0_12px_24px_rgba(15,23,42,0.08)] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-secondary/45 2xl:size-16 ${
                         isDimmed ? "opacity-50" : "opacity-100"
                       }`}
                       onMouseEnter={() => setActiveTool(tool.name)}
                       onMouseLeave={() => setActiveTool(null)}
-                      onFocus={() => setActiveTool(tool.name)}
-                      onBlur={() => setActiveTool(null)}
                     >
                       <ToolLogo name={tool.name} />
-                    </button>
+                    </div>
                     <span
                       className={`pointer-events-none absolute left-1/2 top-full mt-3 -translate-x-1/2 whitespace-nowrap font-mono text-xs text-slate-500 transition-opacity duration-200 ${
                         labelVisible ? "opacity-100" : "opacity-0"
@@ -587,7 +635,7 @@ export function ToolsStrip({ label, heading, subtext, tools }: ToolsStripProps) 
           })}
         </div>
 
-        <div className="mx-auto mt-14 h-[520px] max-w-sm md:hidden">
+        <div className="mx-auto mt-14 h-[520px] max-w-sm md:hidden" aria-hidden="true">
           <div className="relative h-full w-full">
             <svg
               className="pointer-events-none absolute inset-0 z-10 h-full w-full"
@@ -675,13 +723,11 @@ export function ToolsStrip({ label, heading, subtext, tools }: ToolsStripProps) 
                     top: `${(tool.y / MOBILE_SVG_HEIGHT) * 100}%`,
                   }}
                 >
-                  <button
-                    type="button"
-                    aria-label={tool.name}
+                  <div
                     className="flex size-12 items-center justify-center rounded-full border border-border-tertiary bg-white text-slate-900 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_8px_rgba(0,0,0,0.04)] transition-all duration-300 hover:scale-[1.08] hover:shadow-[0_3px_8px_rgba(15,23,42,0.08),0_12px_24px_rgba(15,23,42,0.08)] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-secondary/45"
                   >
                     <ToolLogo name={tool.name} />
-                  </button>
+                  </div>
                   <span className="pointer-events-none absolute left-1/2 top-full mt-2 max-w-20 -translate-x-1/2 text-center font-mono text-[10px] leading-tight text-slate-500">
                     {desktopTool?.shortName ?? tool.name}
                   </span>

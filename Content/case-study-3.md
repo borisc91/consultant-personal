@@ -6,7 +6,7 @@
 
 A mid-size online perfume retailer came to me. They had strong brand recognition in their niche. Also, they had 1,200 SKUs and a healthy email list. However, organic was basically an afterthought.
 
-Paid ads were carrying the business. Meanwhile, organic traffic brought in roughly 30 qualified leads per month. Because most of those were brand-term survivors, the channel looked dead from a new-customer angle. So the founder had a clear question. Was there room to grow, or was SEO just a cost center?
+Paid ads were carrying the business. Meanwhile, organic traffic brought in roughly 30 sales per month. Because most of those were brand-term survivors, the channel looked dead from a new-customer angle. So the founder had a clear question. Was there room to grow, or was SEO just a cost center?
 
 Also, the tech stack was fine on the surface. It was a clean Shopify setup. Therefore, the old agency kept saying things were "SEO-ready." However, the SERPs told a different story. First, the top commercial queries were owned by bigger players. Next, the brand was invisible on most category-level searches. Furthermore, as a result, paid CAC kept climbing every quarter.
 

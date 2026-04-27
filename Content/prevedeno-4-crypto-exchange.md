@@ -8,7 +8,7 @@ Platforma za kripto trgovanje srednje veličine me je kontaktirala u lošem stan
 
 Taj core update ih je i doveo kod mene. Pre pada, biznis je bio stabilan. Međutim, čim je Google pooštrilo standarde za YMYL sadržaj, sve se promenilo. Jer kripto stoji na vrhu YMYL rizika, Google je postao nemilosrdan. Zato su upiti tipa "kako kupiti" i "da li je X legitiman" postali polje borbe za poverenje.
 
-Takođe, stari SEO pristup je bio zasnovan na volumenu. Četiri teksta nedeljno. Freelance pisci. Bez navođenja autora. Drugim rečima, bez ikakvog signala stručnosti. Pa kada je update pogodio, nije bilo ničega što bi zaštitilo rangiranje.
+Stari SEO pristup je bio zasnovan na volumenu. Četiri teksta nedeljno. Freelance pisci. Bez navođenja autora. Drugim rečima, bez ikakvog signala stručnosti. Pa kada je update pogodio, nije bilo ničega što bi zaštitilo rangiranje.
 
 ## Šta sam pronašao u auditu
 

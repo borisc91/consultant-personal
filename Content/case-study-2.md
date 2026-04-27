@@ -6,7 +6,7 @@
 
 A new DTC matcha brand came to me before launch. Fresh domain. Zero backlinks. No history with Google. Therefore, everything had to be built from scratch.
 
-The founder was technical. In fact, he knew SEO mattered. However, he had been burned before. A previous agency had sold him a six-month "audit and roadmap" deal. As a result, he paid for months and got a deck of slides. No rankings. No traffic. Also, he had lost faith in the channel.
+The founder was technical. In fact, he knew SEO mattered.
 
 Also, the niche was brutal. Since 2022, matcha has been an SEO gold rush. Meanwhile, established players had five years of content, strong backlink profiles, and real branded demand. In addition, most of them were well funded. So the real question was hard. How do you beat sites that started a decade ahead of you?
 

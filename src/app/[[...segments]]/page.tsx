@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { ResultsStrip } from "@/components/ResultsStrip";
 import { Services } from "@/components/Services";
-import { ToolsStrip } from "@/components/ToolsStrip";
+import { DeferredToolsStrip } from "@/components/DeferredToolsStrip";
 import { CaseStudies } from "@/components/CaseStudies";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { MarkdownContent } from "@/components/MarkdownContent";
+import { PreloadResources } from "@/components/PreloadResources";
 import {
   absoluteUrl,
   findRoute,
@@ -16,6 +18,7 @@ import {
   getAlternateLinks,
   getCaseStudyCards,
   getCaseStudyContent,
+  getCaseStudyFeatureImage,
   getHomeContent,
   getSiteStructure,
   type Locale,
@@ -64,6 +67,7 @@ export default async function Page({ params }: Props) {
   const homeContent = getHomeContent(route.locale);
   const languageLinks = buildLanguageLinks(route.page, route.locale);
   const navItems = buildNavItems(route.locale);
+  const homeHref = findPagePath("home", route.locale);
   const footerPrimaryLinks = buildFooterPrimaryLinks(route.locale);
   const footerCaseStudyLinks = getCaseStudyCards(route.locale).map((caseStudy) => ({
     label: caseStudy.title,
@@ -75,10 +79,14 @@ export default async function Page({ params }: Props) {
   };
 
   if (route.page.type === "home") {
+    const heroPosterSrc = "/video-increase-traffic-poster.jpg";
+
     return (
       <>
-        <Navbar navItems={navItems} languageLinks={languageLinks} />
-        <main className="flex-1 w-full flex flex-col">
+        <PreloadResources heroPosterSrc={heroPosterSrc} />
+        <SkipLink />
+        <Navbar navItems={navItems} languageLinks={languageLinks} homeHref={homeHref} />
+        <main id="main-content" tabIndex={-1} className="flex-1 w-full flex flex-col">
           <Hero
             headingLineOne={homeContent.headingLineOne}
             headingLineTwo={homeContent.headingLineTwo}
@@ -88,7 +96,7 @@ export default async function Page({ params }: Props) {
             locale={route.locale}
             videoSrc="/video-increase-traffic.optimized.mp4"
             videoWebmSrc="/video-increase-traffic.optimized.webm"
-            videoPosterSrc="/video-increase-traffic-poster.jpg"
+            videoPosterSrc={heroPosterSrc}
           />
           <ResultsStrip stats={homeContent.results} />
           <Services
@@ -96,7 +104,7 @@ export default async function Page({ params }: Props) {
             subtext={homeContent.capabilitiesSubtext}
             services={homeContent.capabilities}
           />
-          <ToolsStrip
+          <DeferredToolsStrip
             label={homeContent.toolsLabel}
             heading={homeContent.toolsHeading}
             subtext={homeContent.toolsSubtext}
@@ -132,10 +140,12 @@ export default async function Page({ params }: Props) {
   if (route.page.type === "case-studies-index") {
     return (
       <>
-        <Navbar navItems={navItems} languageLinks={languageLinks} />
-        <main className="flex-1 w-full flex flex-col pt-20">
+        <SkipLink />
+        <Navbar navItems={navItems} languageLinks={languageLinks} homeHref={homeHref} />
+        <main id="main-content" tabIndex={-1} className="flex-1 w-full flex flex-col pt-20">
           <CaseStudies
-            heading={homeContent.caseStudiesHeading}
+            heading="Case Studies"
+            headingLevel="h1"
             subtext={homeContent.caseStudiesSubtext}
             viewAllLabel={homeContent.caseStudiesCta}
             viewAllHref={findPagePath("case-studies-hub", route.locale)}
@@ -168,10 +178,13 @@ export default async function Page({ params }: Props) {
       notFound();
     }
 
+    const featureImage = getCaseStudyFeatureImage(route.page, caseStudy.title);
+
     return (
       <>
-        <Navbar navItems={navItems} languageLinks={languageLinks} />
-        <main className="flex-1 w-full bg-white pt-32 pb-24 px-6">
+        <SkipLink />
+        <Navbar navItems={navItems} languageLinks={languageLinks} homeHref={homeHref} />
+        <main id="main-content" tabIndex={-1} className="flex-1 w-full bg-white pt-32 pb-24 px-6">
           <article className="max-w-3xl mx-auto">
             <p className="font-mono text-xs tracking-widest text-slate-400 uppercase mb-6">
               {route.page.industry}
@@ -183,6 +196,19 @@ export default async function Page({ params }: Props) {
               <p className="text-xl text-slate-600 leading-relaxed border-y border-slate-200 py-6 mb-12">
                 {caseStudy.dek}
               </p>
+            ) : null}
+            {featureImage ? (
+              <div className="mb-12 overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 shadow-sm">
+                <Image
+                  src={featureImage.src}
+                  alt={featureImage.alt}
+                  width={featureImage.width}
+                  height={featureImage.height}
+                  sizes="(max-width: 768px) 100vw, 768px"
+                  preload
+                  className="h-auto w-full"
+                />
+              </div>
             ) : null}
             <MarkdownContent markdown={caseStudy.bodyMarkdown} />
           </article>
@@ -208,8 +234,9 @@ export default async function Page({ params }: Props) {
   if (route.page.type === "contact") {
     return (
       <>
-        <Navbar navItems={navItems} languageLinks={languageLinks} />
-        <main className="flex-1 w-full bg-white pt-20">
+        <SkipLink />
+        <Navbar navItems={navItems} languageLinks={languageLinks} homeHref={homeHref} />
+        <main id="main-content" tabIndex={-1} className="flex-1 w-full bg-white pt-20">
           <Contact
             heading={homeContent.contactHeading}
             copy={homeContent.contactCopy}
@@ -230,10 +257,24 @@ export default async function Page({ params }: Props) {
   notFound();
 }
 
+function SkipLink() {
+  return (
+    <a
+      href="#main-content"
+      className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-xl focus:bg-white focus:px-4 focus:py-3 focus:text-sm focus:font-medium focus:text-slate-900 focus:shadow-lg"
+    >
+      Skip to main content
+    </a>
+  );
+}
+
 function buildLanguageLinks(page: SitePage, activeLocale: Locale) {
-  return getSiteStructure().config.locales.map((locale) => ({
+  const { config } = getSiteStructure();
+
+  return config.locales.map((locale) => ({
     label: locale.toUpperCase(),
     href: page.paths[locale],
+    hrefLang: config.hreflangCodes[locale],
     active: locale === activeLocale,
   }));
 }

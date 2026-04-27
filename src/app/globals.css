@@ -19,6 +19,21 @@
   }
 }
 
+@keyframes nav-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-enter {
+  animation: nav-enter 0.8s ease-out both;
+}
+
 @keyframes editorial-blue-sweep {
   0% {
     background-position: 120% 50%;
@@ -84,6 +99,7 @@
 @media (prefers-reduced-motion: reduce) {
   .animate-editorial-blue-sweep,
   .animate-editorial-blue-sweep-reverse,
+  .nav-enter,
   .tools-radar-wave,
   .tools-node-float {
     animation: none;

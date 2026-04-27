@@ -1,53 +1,68 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import gsap from "gsap";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { LogoMark } from "@/components/LogoMark";
 
 type NavbarProps = {
   navItems: Array<{ label: string; href: string }>;
-  languageLinks: Array<{ label: string; href: string; active: boolean }>;
+  languageLinks: Array<{ label: string; href: string; hrefLang: string; active: boolean }>;
+  homeHref: string;
 };
 
-export function Navbar({ navItems, languageLinks }: NavbarProps) {
-  const navRef = useRef<HTMLElement>(null);
+export function Navbar({ navItems, languageLinks, homeHref }: NavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    // Elegant quick fade down for the navbar
-    gsap.fromTo(
-      navRef.current,
-      { y: -20, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" }
-    );
-  }, []);
+    if (!isMobileMenuOpen) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isMobileMenuOpen]);
 
   return (
     <nav
-      ref={navRef}
-      className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200"
+      aria-label="Primary navigation"
+      className="nav-enter fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200"
     >
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <Link href="/" className="inline-flex items-center" aria-label="Home">
+        <Link href={homeHref} className="inline-flex items-center" aria-label="Home">
           <LogoMark />
         </Link>
 
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
           {navItems.map((item) => (
-            <Link key={item.href} href={item.href} className="hover:text-slate-900 transition-colors">
+            <Link
+              key={item.href}
+              href={item.href}
+              aria-current={isCurrentPath(pathname, item.href) ? "page" : undefined}
+              className="hover:text-slate-900 transition-colors"
+            >
               {item.label}
             </Link>
           ))}
           
-          <div className="h-4 w-[1px] bg-slate-300 mx-2"></div>
+          <div className="h-4 w-[1px] bg-slate-300 mx-2" aria-hidden="true"></div>
           
-          <div className="flex gap-3 text-xs tracking-wider">
+          <div className="flex gap-3 text-xs tracking-wider" role="group" aria-label="Language switcher">
             {languageLinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
+                aria-current={link.active ? "true" : undefined}
+                hrefLang={link.hrefLang}
                 className={link.active ? "text-slate-900 cursor-pointer" : "text-slate-400 hover:text-slate-900 cursor-pointer transition-colors"}
               >
                 {link.label}
@@ -70,6 +85,8 @@ export function Navbar({ navItems, languageLinks }: NavbarProps) {
 
       <div
         id="mobile-navigation"
+        aria-label="Mobile navigation"
+        aria-hidden={!isMobileMenuOpen}
         className={
           isMobileMenuOpen
             ? "border-t border-slate-200 bg-white/95 px-6 py-5 shadow-lg backdrop-blur-md md:hidden"
@@ -81,6 +98,7 @@ export function Navbar({ navItems, languageLinks }: NavbarProps) {
             <Link
               key={item.href}
               href={item.href}
+              aria-current={isCurrentPath(pathname, item.href) ? "page" : undefined}
               className="transition-colors hover:text-slate-900"
               onClick={() => setIsMobileMenuOpen(false)}
             >
@@ -94,6 +112,8 @@ export function Navbar({ navItems, languageLinks }: NavbarProps) {
             <Link
               key={link.label}
               href={link.href}
+              aria-current={link.active ? "true" : undefined}
+              hrefLang={link.hrefLang}
               className={link.active ? "text-slate-900" : "text-slate-400 transition-colors hover:text-slate-900"}
               onClick={() => setIsMobileMenuOpen(false)}
             >
@@ -104,4 +124,22 @@ export function Navbar({ navItems, languageLinks }: NavbarProps) {
       </div>
     </nav>
   );
+}
+
+function isCurrentPath(pathname: string, href: string) {
+  const hrefPath = href.split("#")[0];
+
+  if (!hrefPath || href.includes("#")) {
+    return false;
+  }
+
+  return normalizePath(pathname) === normalizePath(hrefPath);
+}
+
+function normalizePath(pathname: string) {
+  if (pathname === "/") {
+    return pathname;
+  }
+
+  return pathname.replace(/\/+$/, "");
 }

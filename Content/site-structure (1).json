@@ -2,7 +2,7 @@
   "_readme": "Hreflang logic: for each page, iterate paths and emit one <link rel='alternate' hreflang='[hreflangCodes[locale]]' href='[baseUrl + path]'> per locale. Also emit hreflang='x-default' pointing to paths.en.",
 
   "config": {
-    "baseUrl": "https://REPLACE-WITH-YOUR-DOMAIN.com",
+    "baseUrl": "https://boristheconsultant.com",
     "defaultLocale": "en",
     "locales": ["en", "rs", "ru"],
     "localeHtmlLang": {

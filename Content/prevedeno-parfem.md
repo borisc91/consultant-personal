@@ -1,4 +1,4 @@
-# Od 30 mesečnih lead-ova do 500 za 4 meseca: Obnova SEO za niche perfumerijsku brendu
+# Od 30 mesečnih lead-ova do 500 za 4 meseca: Obnova SEO za parfimerijski brend
 
 **+850% ROI · +380% mesečnih organskih klikova · +50% YoY mesečnih prodaja minimum**
 
@@ -6,7 +6,7 @@
 
 Srednje veliki online prodavac parfema došao je kod mene. Imali su jak brand u svojoj niši. Takođe, imali su 1.200 SKU i solidnu email listu. Međutim, organski saobraćaj bio je u suštini zapostavljen.
 
-Plaćeni oglasi su pokretali poslovanje. U međuvremenu, organski saobraćaj donosio je oko 30 kvalifikovanih leadova mesečno. Pošto su većina bili brand-term preživeli, kanal je delovao mrtvo sa aspekta novih kupaca. Zato je osnivač imao jasno pitanje. Da li ima prostora za rast, ili je SEO samo trošak?
+Plaćeni oglasi su pokretali poslovanje. U međuvremenu, organski saobraćaj donosio je oko 30 prodaja mesečno. Pošto su većina bili brand-term preživeli, kanal je delovao mrtvo sa aspekta novih kupaca. Zato je osnivač imao jasno pitanje. Da li ima prostora za rast, ili je SEO samo trošak?
 
 Takođe, tehnološki stek bio je dobar na površini. Bio je čist Shopify setup. Zato je stara agencija stalno govorila da su stvari "SEO-ready." Međutim, SERP su pričali drugu priču. Prvo, top komercijalne pretrage bile su u vlasništvu većih igrača. Zatim, brand je bio nevidljiv kod većine category-level pretraga. Štaviše, kao rezultat, plaćeni CAC nastavio je da raste svakog kvartala.
 

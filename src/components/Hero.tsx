@@ -228,6 +228,7 @@ export function Hero({
             </h1>
             <div className="max-w-xl text-base leading-relaxed text-slate-600 md:text-lg">
               <p
+                id="hero-intro"
                 className={
                   isIntroExpanded
                     ? ""
@@ -239,6 +240,8 @@ export function Hero({
               <button
                 type="button"
                 className="mt-2 inline-flex text-sm font-medium text-accent transition-colors hover:text-slate-900 md:hidden"
+                aria-expanded={isIntroExpanded}
+                aria-controls="hero-intro"
                 onClick={() => setIsIntroExpanded((current) => !current)}
               >
                 {isIntroExpanded ? readMoreLabels[locale].less : readMoreLabels[locale].more}
@@ -266,7 +269,7 @@ export function Hero({
                   poster={videoPosterSrc}
                   disablePictureInPicture
                   controlsList="nodownload noplaybackrate noremoteplayback"
-                  aria-label="Boris demonstrating traffic growth on a chart"
+                  aria-hidden="true"
                 >
                   <source src={videoSrc} type="video/mp4" />
                   {videoWebmSrc ? (
@@ -295,7 +298,7 @@ export function Hero({
               className="group relative inline-flex items-center justify-center gap-2 bg-slate-900 text-white px-7 py-3.5 rounded-xl text-sm font-medium transition-transform hover:scale-[1.02] active:scale-[0.98] md:px-8 md:py-4"
             >
               {primaryCta}
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
             </Link>
             <Link 
               href="#contact"

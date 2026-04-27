@@ -4,9 +4,9 @@
 
 ## Izazov
 
-Kripto medijski sajt me je kontaktirao osam meseci nakon Helpful Content Update-a iz septembra 2023. Prvo, svoj saobraćaj su izgradili na vest sadržaju velikog obima. Freelance pisci. Brza realizacija. Takođe, široko pokrivanje svakog altcoina i regulatorne priče.
+Kripto medijski sajt me je kontaktirao osam meseci nakon Helpful Content Update-a iz septembra 2025. Prvo, svoj saobraćaj su izgradili na vest sadržaju velikog obima. Freelance pisci. Brza realizacija. Takođe, široko pokrivanje svakog altcoina i regulatorne priče.
 
-Zatim je HCU udario. Saobraćaj je pao 70% od vrhunca. Štaviše, kasnija core ažuriranja nastavila su da guraju sajt još niže. Jer je stari model bio "news arbitraža na skali," Google je 2023. i 2024. sistematski uništavao taj pristup. Pa kada su me kontaktirali, sajt je već mesecima gubio krv.
+Zatim je HCU udario. Saobraćaj je pao 70% od vrhunca. Štaviše, kasnija core ažuriranja nastavila su da guraju sajt još niže. Jer je stari model bio "news arbitraža na skali," Google je i 2025. sistematski uništavao taj pristup. Pa kada su me kontaktirali, sajt je već mesecima gubio krv.
 
 Takođe, tim je bio u poricanju. Na primer, nastavljali su da objavljuju istim tempom. U međuvremenu, svaki novi post dodavao je na nagomilanu masu. Zato prvi razgovor nije bio o strategiji. Umesto toga, bio je o suočavanju sa onim što je pošlo naopako.
 

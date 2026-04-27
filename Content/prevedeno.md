@@ -20,7 +20,7 @@ Prvo, sproveo sam kompletan tehnički i content audit. Zatim, pet nalaza je obli
 
 **Treće, responsible gambling signali su bili zakopani.** Iako je footer imao standardne linkove, nijedna od money stranica nije nosila kontekstualne blokove poverenja. Dakle, igrač koji čita casino review nije imao vidljiv podsetnik o resursima za bezbedniju igru.
 
-**Potom, stranice kategorija su bile tanke.** Top komercijalne stranice su imale otprilike 200 reči intro teksta iznad affiliate vidžeta. U međuvremenu, konkurenti su vodili stranice stubove od 2.500 reči sa tabela za poređenje i FAQ sekcijama.
+**Potom, stranice kategorija su bile tanke.** Top komercijalne stranice su imale otprilike 200 reči intro teksta. U međuvremenu, konkurenti su vodili stranice stubove od 2.500 reči sa tabela za poređenje i FAQ sekcijama.
 
 **Konačno, backlink profil je bio neobično čist.** Anchor distribucija je bila široka i prirodna. Zato što su brand, naked URL, generički i topical anchor tekstovi sedeli u zdravom odnosu, sajt je imao prostora za rast. Dakle, taj nalaz je promenio plan. Kao rezultat, mogao sam da vodim komercijalniju link kampanju nego što je uobičajeno za YMYL klijenta.
 
@@ -38,7 +38,7 @@ Uz SSR, popravio sam LCP uklanjanjem neoptimizovanog hero carousel-a. Zatim sam 
 
 ### E-E-A-T i signali poverenja
 
-Nakon tehničkog posla, obnovio sam author sistem. Sada svaki review i guide ima imenovanog autora sa pravom biografijom. Kredencijali uključuju UKGC iskustvo i godine u industriji. Svaka author stranica linkuje ka proveljivim eksternim profilima.
+Tokom tehničkog posla, obnovio sam author sistem. Sada svaki review i guide ima imenovanog autora sa pravom biografijom. Kredencijali uključuju UKGC iskustvo i godine u industriji. Svaka author stranica linkuje ka proveljivim eksternim profilima.
 
 Takođe, dodao sam responsible gambling kontekst blokove na svaku money stranicu. Međutim, to nisu bili footer dodatci. Umesto toga, stajali su blizu poziva na akciju sa direktnim linkovima ka GamCare i UKGC resursima. Ovo je važno iz dva razloga. Prvo, pomaže compliance-u. Drugo, Google čita iste signale poverenja.
 
@@ -68,4 +68,4 @@ Na osnovu prihoda od FTD koje je prijavio klijent, angažman je doneo približno
 
 ## Šta ovo znači za vas
 
-Ako vaš iGaming sadržaj ne rangira, rešenje možda nije više sadržaja. Umesto toga, moglo bi biti renderovanje. Zato što polovina sajtova koje auditiram u ovom prostoru ima neki oblik ovog problema, najbrži put napred je obično isti. Prvo, popravite osnovu. Zatim, zaslužite poverenje. Konačno, primenite link pritisak pravim redosledom.
+Ako vaš iGaming sadržaj ne rangira, rešenje možda nije više sadržaja. Umesto toga, moglo bi biti renderovanje. Zato što polovina sajtova koje auditiram u ovom prostoru ima neki oblik ovog problema, najbrži put napred je obično isti. Prvo, popravite osnovu. Zatim, zaslužite poverenje. Konačno, primenite snagu linkova pravim redosledom.

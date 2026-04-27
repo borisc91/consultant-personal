@@ -6,7 +6,7 @@
 
 Nova DTC matcha marka došla mi je pre lansiranja. Svež domen. Nula backlink-ova. Nikakva istorija sa Google-om. Zato je sve moralo biti izgrađeno od nule.
 
-Osnivač je bio tehnički potkovan. Zapravo, znao je da je SEO bitan. Međutim, opekao se ranije. Prethodna agencija mu je prodala šestomesečni "audit i roadmap" paket. Rezultat je bio da je platio mesecima i dobio PowerPoint prezentaciju. Bez rangiranja. Bez saobraćaja. Takođe, izgubio je veru u kanal.
+Osnivač je bio tehnički potkovan. Zapravo, znao je da je SEO bitan.
 
 Takođe, niša je bila brutalna. Od 2022. godine, matcha predstavlja SEO zlatnu groznicu. U međuvremenu, etablirani igrači imaju pet godina sadržaja, jake backlink profile i pravu branded potražnju. Pored toga, većina njih je dobro finansirana. Dakle, pravo pitanje kako pobediti sajtove koji su startovali deceniju pre vas?
 
@@ -62,4 +62,4 @@ Pored toga, 380 ključnih reči je rangirano na prvoj strani. Od tih, 14 su bili
 
 Ako pokrećete novi ecommerce brend, lekcija je jednostavna. Prvo, SEO od prvog dana je jeftiniji nego SEO naknadno. Zatim, ispravite osnove pre lansiranja. Nakon toga, koristite prave SERP podatke umesto pretpostavki iz keyword alata. Na kraju, objavite čvrste content klastere sa jasnim komercijalnim odredištima.
 
-Takođe, ignorišite savet da objavite stotine blog postova. U stvari, kvalitet pobeđuje u konkurentnoj niši. Zato, 40 dobro targetiranih članaka, merenih prema tome šta SERP zaista nagrađuje, pobediće 200 generičkih postova svaki put.
+Ignorišite savet da objavite stotine blog postova. U stvari, kvalitet pobeđuje u konkurentnoj niši. Zato, 40 dobro targetiranih članaka, merenih prema tome šta SERP zaista nagrađuje, pobediće 200 generičkih postova svaki put.

@@ -20,7 +20,7 @@ First, I ran a full technical and content audit. Then five findings shaped the w
 
 **Third, responsible gambling signals were buried.** Although the footer had standard links, none of the money pages carried contextual trust blocks. So a player reading a casino review had no visible reminder of safer gambling resources.
 
-**Then, category pages were thin.** The top commercial pages had roughly 200 words of intro above an affiliate widget. Meanwhile, competitors were running 2,500-word pillar pages with comparison tables and FAQ sections.
+**Then, category pages were thin.** The top commercial pages had roughly 200 words of intro. Meanwhile, competitors were running 2,500-word pillar pages with comparison tables and FAQ sections.
 
 **Finally, the backlink profile was unusually clean.** Anchor distribution was wide and natural. Because brand, naked URL, generic, and topical anchors sat in a healthy ratio, the site had room to grow. So that finding changed the plan. As a result, I could run a more commercial link campaign than usual for a YMYL client.
 
@@ -38,7 +38,7 @@ Alongside SSR, I fixed LCP by removing an unoptimized hero carousel. Next, I cle
 
 ### E-E-A-T and Trust Signals
 
-After the tech work, I rebuilt the author system. Now every review and guide runs under a named author with a real bio. Credentials include UKGC experience and industry years. Each author page links to verifiable external profiles.
+I rebuilt the author system. Now every review and guide runs under a named author with a real bio. Credentials include UKGC experience and industry years. Each author page links to verifiable external profiles.
 
 Also, I added responsible gambling context blocks on every money page. However, these were not footer afterthoughts. Instead, they sat near the call to action with direct links to GamCare and UKGC resources. This matters for two reasons. First, it helps compliance. Second, Google reads the same trust cues.
 

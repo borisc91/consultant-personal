@@ -3,6 +3,7 @@ import Link from "next/link";
 type CaseStudiesProps = {
   heading: string;
   subtext: string;
+  headingLevel?: "h1" | "h2";
   viewAllLabel: string;
   viewAllHref: string;
   cardCtaLabel: string;
@@ -17,22 +18,27 @@ type CaseStudiesProps = {
 export function CaseStudies({
   heading,
   subtext,
+  headingLevel = "h2",
   viewAllLabel,
   viewAllHref,
   cardCtaLabel,
   cases,
 }: CaseStudiesProps) {
+  const HeadingTag = headingLevel;
+
   return (
-    <section id="case-studies" className="py-24 md:py-32 px-6 bg-white overflow-hidden">
+    <section id="case-studies" aria-labelledby="case-studies-heading" className="py-24 md:py-32 px-6 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="mb-16 md:mb-24">
           <div>
-            <h2 className="font-editorial text-6xl md:text-7xl tracking-tight text-slate-900 mb-6">
+            <HeadingTag id="case-studies-heading" className="font-editorial text-6xl md:text-7xl tracking-tight text-slate-900 mb-6">
               {heading}
-            </h2>
-            <p className="text-base md:text-lg text-slate-600 leading-relaxed">
-              {subtext}
-            </p>
+            </HeadingTag>
+            {subtext ? (
+              <p className="text-base md:text-lg text-slate-600 leading-relaxed">
+                {subtext}
+              </p>
+            ) : null}
           </div>
         </div>
 
@@ -58,6 +64,7 @@ export function CaseStudies({
 
               <Link
                 href={study.href}
+                aria-label={`${cardCtaLabel}: ${study.title}`}
                 className="mt-auto inline-flex w-fit text-sm font-medium text-accent hover:text-slate-900 transition-colors"
               >
                 {cardCtaLabel} &rarr;
