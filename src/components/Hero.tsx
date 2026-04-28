@@ -157,19 +157,19 @@ export function Hero({
             )}
           </div>
 
-          <div className="order-2 flex flex-col items-start gap-3 pt-1 sm:flex-row sm:items-center md:order-3 md:-mt-6 md:gap-4 md:pt-0">
+          <div className="order-2 grid w-full grid-cols-2 items-stretch gap-2 pt-1 md:order-3 md:-mt-6 md:flex md:w-auto md:items-center md:gap-4 md:pt-0">
             <Link 
               href="#case-studies"
-              className="group relative inline-flex items-center justify-center gap-2 bg-slate-900 text-white px-7 py-3.5 rounded-xl text-sm font-medium transition-transform hover:scale-[1.02] active:scale-[0.98] md:px-8 md:py-4"
+              className="group relative inline-flex min-h-12 min-w-0 items-center justify-center gap-1.5 rounded-xl bg-slate-900 px-3 py-3 text-center text-[12.5px] font-medium leading-tight text-white transition-transform hover:scale-[1.02] active:scale-[0.98] md:min-h-0 md:w-auto md:gap-2 md:px-8 md:py-4 md:text-sm"
             >
-              {primaryCta}
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+              <span className="min-w-0">{primaryCta}</span>
+              <ArrowRight size={15} className="shrink-0 transition-transform group-hover:translate-x-1 md:size-4" aria-hidden="true" />
             </Link>
             <Link 
               href="#contact"
-              className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white/80 px-7 py-3.5 text-sm font-medium text-slate-900 backdrop-blur-sm transition-colors hover:bg-white md:px-8 md:py-4"
+              className="inline-flex min-h-12 min-w-0 items-center justify-center rounded-xl border border-slate-200 bg-white/80 px-3 py-3 text-center text-[12.5px] font-medium leading-tight text-slate-900 backdrop-blur-sm transition-colors hover:bg-white md:min-h-0 md:w-auto md:px-8 md:py-4 md:text-sm"
             >
-              {secondaryCta}
+              <span className="min-w-0">{secondaryCta}</span>
             </Link>
           </div>
         </div>
