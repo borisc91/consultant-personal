@@ -28,17 +28,22 @@ export function ContactForm({ formLabels }: ContactFormProps) {
   const isSending = status === "sending";
   const statusMessageId = "contact-form-status";
 
-  useEffect(() => {
+  function resetStartedAt() {
     if (startedAtRef.current) {
       startedAtRef.current.value = Date.now().toString();
     }
+  }
+
+  useEffect(() => {
+    resetStartedAt();
   }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("sending");
 
-    const formData = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
 
     try {
       const response = await fetch("/api/contact", {
@@ -50,7 +55,8 @@ export function ContactForm({ formLabels }: ContactFormProps) {
         throw new Error("Contact request failed");
       }
 
-      event.currentTarget.reset();
+      form.reset();
+      resetStartedAt();
       setStatus("success");
     } catch {
       setStatus("error");

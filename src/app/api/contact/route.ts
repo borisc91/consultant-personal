@@ -130,6 +130,11 @@ export async function POST(request: Request) {
   const fromEmail = process.env.CONTACT_FROM_EMAIL;
 
   if (!apiKey || !fromEmail) {
+    console.error("Contact form configuration missing", {
+      hasResendApiKey: Boolean(apiKey),
+      hasContactFromEmail: Boolean(fromEmail),
+    });
+
     return NextResponse.json({ error: "Contact form is not configured." }, { status: 500 });
   }
 
@@ -150,6 +155,13 @@ export async function POST(request: Request) {
   });
 
   if (!resendResponse.ok) {
+    const resendError = await resendResponse.text();
+
+    console.error("Resend email delivery failed", {
+      status: resendResponse.status,
+      body: resendError,
+    });
+
     return NextResponse.json({ error: "Email delivery failed." }, { status: 502 });
   }
 
