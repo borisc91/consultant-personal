@@ -118,7 +118,7 @@ export function Hero({
 
           {/* Right Side: Media Placement */}
           <div 
-            className="relative order-3 -mt-1 flex h-[276px] w-full origin-center scale-[1.18] items-center justify-center overflow-visible sm:h-[318px] md:order-2 md:mt-0 md:aspect-video md:h-auto md:w-[74%] md:translate-x-6 md:scale-[1.08] md:justify-self-end lg:w-[72%] lg:-translate-x-2 lg:scale-[1.05] lg:justify-self-start 2xl:w-auto 2xl:translate-x-12 2xl:scale-[1.72] 2xl:justify-self-auto"
+            className="relative order-3 -mt-5 flex h-[276px] w-full origin-center scale-[1.18] items-center justify-center overflow-visible sm:h-[318px] md:order-2 md:mt-0 md:aspect-video md:h-auto md:w-[74%] md:translate-x-6 md:scale-[1.08] md:justify-self-end lg:w-[72%] lg:-translate-x-2 lg:scale-[1.05] lg:justify-self-start 2xl:w-auto 2xl:translate-x-12 2xl:scale-[1.72] 2xl:justify-self-auto"
           >
             <div className="absolute inset-[-8%] bg-[radial-gradient(ellipse_at_64%_50%,rgba(224,242,254,0.52),rgba(248,250,252,0.26)_38%,transparent_66%)] pointer-events-none" />
             <div className="absolute inset-[-8%] opacity-45 bg-[linear-gradient(to_right,rgba(15,23,42,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.08)_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_at_center,black_0%,transparent_72%)] pointer-events-none" />
