@@ -1,4 +1,4 @@
-# Od 30 mesečnih lead-ova do 500 za 4 meseca: Obnova SEO za parfimerijski brend
+# Od 30 mesečnih prodaja do 500 za 4 meseca: Obnova SEO za parfimerijski brend
 
 **+850% ROI · +380% mesečnih organskih klikova · +50% YoY mesečnih prodaja minimum**
 

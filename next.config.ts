@@ -47,10 +47,6 @@ const nextConfig: NextConfig = {
         headers: securityHeaders,
       },
       {
-        source: "/video-increase-traffic-poster.jpg",
-        headers: longTermAssetHeaders,
-      },
-      {
         source: "/video-increase-traffic.optimized.mp4",
         headers: longTermAssetHeaders,
       },

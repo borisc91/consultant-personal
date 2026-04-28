@@ -1,4 +1,4 @@
-# From 30 Monthly Leads to 500 in 4 Months: Rebuilding a Niche Perfume Brand's SEO
+# From 30 Monthly Sales to 500 in 4 Months: Rebuilding a Niche Perfume Brand's SEO
 
 **+850% ROI · +380% monthly organic clicks · +50% YoY monthly sales minimum**
 

@@ -10,7 +10,6 @@ import { CaseStudies } from "@/components/CaseStudies";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { MarkdownContent } from "@/components/MarkdownContent";
-import { PreloadResources } from "@/components/PreloadResources";
 import {
   absoluteUrl,
   findRoute,
@@ -79,11 +78,8 @@ export default async function Page({ params }: Props) {
   };
 
   if (route.page.type === "home") {
-    const heroPosterSrc = "/video-increase-traffic-poster.jpg";
-
     return (
       <>
-        <PreloadResources heroPosterSrc={heroPosterSrc} />
         <SkipLink />
         <Navbar navItems={navItems} languageLinks={languageLinks} homeHref={homeHref} />
         <main id="main-content" tabIndex={-1} className="flex-1 w-full flex flex-col">
@@ -96,7 +92,6 @@ export default async function Page({ params }: Props) {
             locale={route.locale}
             videoSrc="/video-increase-traffic.optimized.mp4"
             videoWebmSrc="/video-increase-traffic.optimized.webm"
-            videoPosterSrc={heroPosterSrc}
           />
           <ResultsStrip stats={homeContent.results} />
           <Services
